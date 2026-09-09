@@ -80,6 +80,12 @@ a { color: inherit; }
   margin-top: 12px;
 }
 
+.btn-danger {
+  color: var(--bad);
+  border-color: var(--bad-bg);
+}
+.btn-danger:hover { border-color: var(--bad); background: var(--bad-bg); }
+
 .topbar {
   position: sticky;
   top: 0;
@@ -274,6 +280,19 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.list-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-soft);
 }
 
 .alumno-card {
@@ -954,7 +973,12 @@ function renderFichas() {
       listHtml = `<div class="section-hint">Elegí una sala arriba para ver y cargar los pedidos.</div>`;
     } else {
       const alumnosSala = state.alumnos.filter(a => a.turno === ui.turno && a.sala === ui.sala).sort(sortByName);
-      listHtml = renderCardList(alumnosSala, false);
+      listHtml = `
+        <div class="list-toolbar">
+          <button class="btn btn-primary btn-small" id="btnAgregarAlumno">+ Agregar alumno a esta sala</button>
+        </div>
+        ${renderCardList(alumnosSala, false)}
+      `;
     }
   }
 
@@ -987,6 +1011,12 @@ function renderCard(a, showSalaTag) {
         </div>
       </summary>
       <div class="card-body">
+        <div class="field-group-title">Datos del alumno</div>
+        <div class="field-grid">
+          <div class="field"><label>Apellido</label><input type="text" data-field="apellido" value="${escapeAttr(a.apellido)}"></div>
+          <div class="field"><label>Nombre</label><input type="text" data-field="nombre" value="${escapeAttr(a.nombre)}"></div>
+        </div>
+
         <div class="field-group-title">Contacto</div>
         <div class="field-grid">
           <div class="field"><label>Padre</label><input type="text" data-field="padre" value="${escapeAttr(a.padre)}"></div>
@@ -1053,6 +1083,10 @@ function renderCard(a, showSalaTag) {
 
         <div class="field-group-title">Notas</div>
         <div class="field"><textarea rows="2" data-field="notas" placeholder="Opcional">${escapeHtml(a.notas)}</textarea></div>
+
+        <div class="card-footer-actions">
+          <button type="button" class="btn btn-small btn-danger" data-delete-alumno="${escapeAttr(a.id)}">Eliminar alumno de la lista</button>
+        </div>
       </div>
     </details>
   `;
@@ -1098,7 +1132,40 @@ function attachFichasHandlers() {
   list.addEventListener('change', onFieldChange);
   list.addEventListener('click', onFotoClick);
   list.addEventListener('click', onQtyClick);
+  list.addEventListener('click', onAgregarAlumnoClick);
+  list.addEventListener('click', onEliminarAlumnoClick);
   list.addEventListener('keydown', onFotoKeydown);
+}
+
+function onAgregarAlumnoClick(e) {
+  const btn = e.target.closest('#btnAgregarAlumno');
+  if (!btn) return;
+  const nuevo = Object.assign(
+    { id: uid('al'), turno: ui.turno, sala: ui.sala, apellido: 'Apellido', nombre: 'Nombre' },
+    defaultAlumnoFields()
+  );
+  state.alumnos.push(nuevo);
+  saveState();
+  render();
+  const cardEl = document.querySelector(`.alumno-card[data-id="${nuevo.id}"]`);
+  if (cardEl) {
+    cardEl.setAttribute('open', '');
+    cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const apellidoInput = cardEl.querySelector('[data-field="apellido"]');
+    if (apellidoInput) { apellidoInput.focus(); apellidoInput.select(); }
+  }
+}
+
+function onEliminarAlumnoClick(e) {
+  const btn = e.target.closest('[data-delete-alumno]');
+  if (!btn) return;
+  const alumno = state.alumnos.find(a => a.id === btn.dataset.deleteAlumno);
+  if (!alumno) return;
+  const ok = confirm(`¿Eliminar a ${alumno.apellido}, ${alumno.nombre} de la lista? No se puede deshacer.`);
+  if (!ok) return;
+  state.alumnos = state.alumnos.filter(a => a.id !== alumno.id);
+  saveState();
+  render();
 }
 
 function onQtyClick(e) {
@@ -1198,6 +1265,10 @@ function onFieldChange(e) {
     if (field === 'estadoPago') {
       const montoField = cardEl.querySelector('[data-role="montoAbonadoField"]');
       if (montoField) montoField.hidden = (e.target.value !== 'sena');
+    }
+    if (field === 'apellido' || field === 'nombre') {
+      const nameEl = cardEl.querySelector('.alumno-name');
+      if (nameEl) nameEl.textContent = `${alumno.apellido}, ${alumno.nombre}`;
     }
   } else {
     return;
