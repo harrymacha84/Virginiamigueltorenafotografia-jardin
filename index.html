@@ -1112,17 +1112,31 @@ function renderFotoChipsHtml(arr, tipo) {
 }
 
 function attachFichasHandlers() {
+  attachTurnoSalaAndListHandlers();
+  wireSearchInputOnce();
+}
+
+function attachTurnoSalaAndListHandlers() {
   document.querySelectorAll('.turno-toggle button').forEach(btn => {
     btn.addEventListener('click', () => { ui.turno = btn.dataset.turno; ui.sala = null; render(); });
   });
   document.querySelectorAll('.sala-chip').forEach(btn => {
     btn.addEventListener('click', () => { ui.sala = btn.dataset.sala; render(); });
   });
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    searchInput.addEventListener('input', () => { ui.search = searchInput.value; renderSearchOnly(); });
-  }
+  attachCardListHandlers();
+}
 
+// The search input lives in the topbar, which stays untouched during search-only re-renders,
+// so this node can persist across many renders. Guard with a flag to avoid stacking a new
+// "input" listener on it every keystroke (which previously caused runaway re-renders).
+function wireSearchInputOnce() {
+  const searchInput = document.getElementById('searchInput');
+  if (!searchInput || searchInput.dataset.wired) return;
+  searchInput.dataset.wired = '1';
+  searchInput.addEventListener('input', () => { ui.search = searchInput.value; renderSearchOnly(); });
+}
+
+function attachCardListHandlers() {
   const list = document.getElementById('cardList');
   if (!list) return;
   list.addEventListener('input', onFieldChange);
@@ -1237,7 +1251,8 @@ function renderSearchOnly() {
   const viewport = document.getElementById('viewport');
   const caretPos = document.getElementById('searchInput') ? document.getElementById('searchInput').selectionStart : null;
   viewport.innerHTML = renderFichas();
-  attachFichasHandlers();
+  attachTurnoSalaAndListHandlers();
+  wireSearchInputOnce();
   const input = document.getElementById('searchInput');
   if (input) {
     input.focus();
