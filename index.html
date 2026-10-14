@@ -697,6 +697,17 @@ table.data-table tfoot td { font-weight: 700; background: #F4F0E0; border-top: 1
   .home-title { font-size: 1.2rem; }
 }
 
+/* ---------- Envío a imprimir ---------- */
+.ficha-filtro { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 12px; }
+.ficha-filtro button { flex: 0 0 auto; border: 1px solid var(--border); background: var(--surface); border-radius: 999px; padding: 7px 14px; font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+.ficha-filtro button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pill-info { background: #E5F5FC; color: #0079B0; }
+.envio-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.check-line { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; min-height: 40px; }
+.check-line input { width: 22px; height: 22px; accent-color: var(--accent); }
+.por-enviar-n { color: var(--good); }
+.pill[hidden] { display: none; }
+
 /* =====================================================
    Capa visual: estilo Mercado Pago
    (solo diseño; no cambia estructura ni funciones)
@@ -891,6 +902,7 @@ let ui = {
   sesTipo: 'todos',
   sesMes: 'todos',
   sesionAbierta: null,
+  fichaFiltro: 'todos',  // 'todos' | 'por_enviar' | 'enviados' | 'sin_pagar'
 };
 
 function defaultAlumnoFields() {
@@ -903,6 +915,9 @@ function defaultAlumnoFields() {
     montoAbonado: 0,
     medioPago: '',
     notas: '',
+    enviado: false,       // ya enviado a imprimir
+    fechaEnvio: '',
+    enviadoTotal: 0,      // total del pedido al momento de enviarlo (para detectar cambios posteriores)
   };
 }
 
@@ -1168,6 +1183,32 @@ function aggregateByPeriod(alumnosConPedido, periodo) {
   return Array.from(map.values()).sort((a, b) => a.key.localeCompare(b.key));
 }
 
+function esPagado(a) { const t = calcTotal(a); return t > 0 && calcCobrado(a) >= t; }
+
+// 'sin_pedido' | 'sin_pagar' | 'por_enviar' | 'enviado' | 'enviado_cambio'
+function estadoEnvio(a) {
+  const t = calcTotal(a);
+  if (a.enviado) return t !== (Number(a.enviadoTotal) || 0) ? 'enviado_cambio' : 'enviado';
+  if (t <= 0) return 'sin_pedido';
+  return esPagado(a) ? 'por_enviar' : 'sin_pagar';
+}
+
+function envioPill(a) {
+  const e = estadoEnvio(a);
+  if (e === 'enviado') return { label: 'Enviado', cls: 'pill-info' };
+  if (e === 'enviado_cambio') return { label: 'Pedido modificado', cls: 'pill-warn' };
+  if (e === 'por_enviar') return { label: 'Para enviar', cls: 'pill-good' };
+  return null;
+}
+
+function pasaFiltroFicha(a, f) {
+  const e = estadoEnvio(a);
+  if (f === 'por_enviar') return e === 'por_enviar' || e === 'enviado_cambio';
+  if (f === 'enviados') return e === 'enviado' || e === 'enviado_cambio';
+  if (f === 'sin_pagar') return e === 'sin_pagar';
+  return true;
+}
+
 function productoLabel(id) {
   if (id === 'general' || !id) return 'General / sin producto';
   const p = PRODUCTS.find(p => p.id === id);
@@ -1413,12 +1454,14 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ===================== Pantalla: Jardines ===================== */
 
 function jardinTotales(j) {
-  let total = 0, cobrado = 0, pedidos = 0;
+  let total = 0, cobrado = 0, pedidos = 0, porEnviar = 0;
   j.alumnos.forEach(a => {
     const t = calcTotal(a);
+    const ee = estadoEnvio(a);
+    if (ee === 'por_enviar' || ee === 'enviado_cambio') porEnviar++;
     if (t > 0) { pedidos++; total += t; cobrado += Math.min(calcCobrado(a), t); }
   });
-  return { alumnos: j.alumnos.length, salas: j.salas.length, pedidos, total, cobrado, aCobrar: total - cobrado };
+  return { alumnos: j.alumnos.length, salas: j.salas.length, pedidos, porEnviar, total, cobrado, aCobrar: total - cobrado };
 }
 
 function renderJardines() {
@@ -1428,7 +1471,7 @@ function renderJardines() {
       <div class="jardin-card" data-jardin="${escapeAttr(j.id)}">
         <div class="jardin-head">
           <h3>${escapeHtml(j.nombre)}</h3>
-          <div class="jardin-sub">${t.alumnos} alumnos · ${t.salas} salas · ${t.pedidos} pedidos</div>
+          <div class="jardin-sub">${t.alumnos} alumnos · ${t.salas} salas · ${t.pedidos} pedidos${t.porEnviar ? ` · <b class="por-enviar-n">${t.porEnviar} por enviar</b>` : ''}</div>
         </div>
         <div class="jardin-money">
           <div><span>Total</span><b>${money(t.total)}</b></div>
@@ -2530,8 +2573,11 @@ function renderFichas() {
   } else {
     const turnos = turnosList(j);
     if (!turnos.includes(ui.turno)) ui.turno = turnos[0];
+    const nPorEnviar = j.alumnos.filter(a => pasaFiltroFicha(a, 'por_enviar')).length;
+    const filtros = [['todos', 'Todos'], ['por_enviar', 'Para enviar (' + nPorEnviar + ')'], ['enviados', 'Enviados'], ['sin_pagar', 'Sin pagar']];
+    const barraFiltro = `<div class="ficha-filtro">${filtros.map(([k, l]) => `<button data-ffiltro="${k}" class="${ui.fichaFiltro === k ? 'active' : ''}">${l}</button>`).join('')}</div>`;
     const salas = salasPorTurno(j)[ui.turno] || [];
-    headerExtra = `
+    headerExtra = barraFiltro + (ui.fichaFiltro !== 'todos' ? '' : `
       <details class="import-box">
         <summary>Importar alumnos desde Excel / CSV</summary>
         <div class="import-body">
@@ -2556,8 +2602,12 @@ function renderFichas() {
         }).join('')}
         <button class="sala-chip sala-chip-add" id="btnAgregarSala"><span>+ Agregar sala</span><span class="n">turno ${escapeHtml(ui.turno)}</span></button>
       </div>
-    `;
-    if (!ui.sala || !salas.includes(ui.sala)) {
+    `);
+    if (ui.fichaFiltro !== 'todos') {
+      const lista = j.alumnos.filter(a => pasaFiltroFicha(a, ui.fichaFiltro)).sort((a, b) => a.turno !== b.turno ? a.turno.localeCompare(b.turno, 'es') : (a.sala !== b.sala ? a.sala.localeCompare(b.sala, 'es') : sortByName(a, b)));
+      listHtml = `<div class="list-toolbar"><span class="muted">${lista.length} ${lista.length === 1 ? 'alumno' : 'alumnos'} en toda la lista del jardín</span>${ui.fichaFiltro === 'por_enviar' && lista.length ? `<button class="btn btn-primary btn-small" id="btnMarcarEnviados">Marcar estos ${lista.length} como enviados</button>` : ''}</div>`
+        + (lista.length ? renderCardList(lista, true) : '<div class="section-hint">No hay alumnos en este filtro.</div>');
+    } else if (!ui.sala || !salas.includes(ui.sala)) {
       listHtml = `<div class="section-hint">${salas.length ? 'Elegí una sala arriba para ver y cargar los pedidos.' : 'Este turno todavía no tiene salas. Tocá “+ Agregar sala” o importá un listado desde Excel.'}</div>`;
     } else {
       const alumnosSala = j.alumnos.filter(a => a.turno === ui.turno && a.sala === ui.sala).sort(sortByName);
@@ -2594,6 +2644,7 @@ function renderCard(a, showSalaTag) {
           <div class="alumno-sub">${showSalaTag ? escapeHtml(a.turno) + ' · ' + escapeHtml(a.sala) : escapeHtml(a.turno)}</div>
         </div>
         <div class="summary-right">
+          <span class="pill pill-info" data-role="envioPill" ${envioPill(a) && estadoEnvio(a) !== 'por_enviar' ? '' : 'hidden'}>${envioPill(a) ? envioPill(a).label : ''}</span>
           <span class="pill ${st.cls}" data-role="pill">${st.label}</span>
           <span class="summary-total" data-role="total">${total > 0 ? money(total) : '—'}</span>
           <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2670,6 +2721,16 @@ function renderCard(a, showSalaTag) {
           <span>Saldo pendiente: <b data-role="saldoLine">${money(saldo)}</b></span>
         </div>
 
+        <div class="field-group-title">Impresión</div>
+        <div class="envio-row">
+          <label class="check-line"><input type="checkbox" data-field="enviado" ${a.enviado ? 'checked' : ''}> Ya lo envié a imprimir</label>
+          <div class="field" data-role="envioFechaField" style="min-width:150px" ${a.enviado ? '' : 'hidden'}>
+            <label>Fecha de envío</label>
+            <input type="date" data-field="fechaEnvio" value="${escapeAttr(a.fechaEnvio)}">
+          </div>
+          <span class="muted" data-role="envioAviso">${estadoEnvio(a) === 'enviado_cambio' ? 'El pedido cambió después de enviarlo: revisá si hay que reimprimir.' : (estadoEnvio(a) === 'por_enviar' ? 'Pagado y todavía sin enviar.' : '')}</span>
+        </div>
+
         <div class="field-group-title">Notas</div>
         <div class="field"><textarea rows="2" data-field="notas" placeholder="Opcional">${escapeHtml(a.notas)}</textarea></div>
 
@@ -2714,6 +2775,15 @@ function attachTurnoSalaAndListHandlers() {
   });
   document.querySelectorAll('.sala-chip[data-sala]').forEach(btn => {
     btn.addEventListener('click', () => { ui.sala = btn.dataset.sala; render(); });
+  });
+  document.querySelectorAll('[data-ffiltro]').forEach(b => b.addEventListener('click', () => { ui.fichaFiltro = b.dataset.ffiltro; render(); }));
+  const bme = document.getElementById('btnMarcarEnviados');
+  if (bme) bme.addEventListener('click', () => {
+    const lista = cur().alumnos.filter(a => pasaFiltroFicha(a, 'por_enviar'));
+    if (!lista.length) return;
+    if (!confirm(`¿Marcar ${lista.length} alumnos como enviados a imprimir (con fecha de hoy)?`)) return;
+    lista.forEach(a => { a.enviado = true; a.fechaEnvio = todayStr(); a.enviadoTotal = calcTotal(a); });
+    saveState(); render();
   });
   const bs = document.getElementById('btnAgregarSala');
   if (bs) bs.addEventListener('click', agregarSala);
@@ -2875,6 +2945,12 @@ function onFieldChange(e) {
     const field = e.target.dataset.field;
     if (field === 'montoAbonado') {
       alumno[field] = Number(e.target.value) || 0;
+    } else if (field === 'enviado') {
+      alumno.enviado = e.target.checked;
+      alumno.fechaEnvio = alumno.enviado ? (alumno.fechaEnvio || todayStr()) : '';
+      alumno.enviadoTotal = alumno.enviado ? calcTotal(alumno) : 0;
+      const ff = cardEl.querySelector('[data-role="envioFechaField"]');
+      if (ff) { ff.hidden = !alumno.enviado; ff.querySelector('input').value = alumno.fechaEnvio; }
     } else {
       alumno[field] = e.target.value;
     }
@@ -2914,6 +2990,14 @@ function updateCardComputed(cardEl, alumno) {
   const pillEl = cardEl.querySelector('[data-role="pill"]');
   pillEl.textContent = st.label;
   pillEl.className = 'pill ' + st.cls;
+
+  const ep = envioPill(alumno), epEl = cardEl.querySelector('[data-role="envioPill"]');
+  if (epEl) {
+    epEl.hidden = !(ep && estadoEnvio(alumno) !== 'por_enviar');
+    if (ep) { epEl.textContent = ep.label; epEl.className = 'pill ' + ep.cls; }
+  }
+  const av = cardEl.querySelector('[data-role="envioAviso"]');
+  if (av) { const ee = estadoEnvio(alumno); av.textContent = ee === 'enviado_cambio' ? 'El pedido cambió después de enviarlo: revisá si hay que reimprimir.' : (ee === 'por_enviar' ? 'Pagado y todavía sin enviar.' : ''); }
 
   cardEl.querySelector('[data-role="total"]').textContent = total > 0 ? money(total) : '—';
   cardEl.querySelector('[data-role="totalLine"]').textContent = money(total);
@@ -3057,6 +3141,7 @@ function renderStats() {
               <option value="todos">Todos</option>
               <option value="pedido">Solo los que tienen pedido</option>
               <option value="saldo">Solo con saldo pendiente</option>
+              <option value="por_enviar">Solo pagados que faltan enviar a imprimir</option>
             </select>
           </div>
           <div class="field">
@@ -3426,7 +3511,7 @@ function planillaSheetsFor(scope, filtro) {
   const salasOrden = [];
   turnosList().forEach(t => (salasPorTurno()[t] || []).forEach(s => salasOrden.push({ turno: t, sala: s })));
 
-  const pasaFiltro = a => filtro === 'pedido' ? calcTotal(a) > 0 : filtro === 'saldo' ? calcSaldo(a) > 0 : true;
+  const pasaFiltro = a => filtro === 'pedido' ? calcTotal(a) > 0 : filtro === 'saldo' ? calcSaldo(a) > 0 : filtro === 'por_enviar' ? pasaFiltroFicha(a, 'por_enviar') : true;
   const deSala = (turno, sala) => cur().alumnos.filter(a => a.turno === turno && a.sala === sala && pasaFiltro(a)).sort(sortByName);
 
   if (scope === 'one') {
@@ -3526,12 +3611,13 @@ function exportCompleto() {
     if (a.sala !== b.sala) return a.sala.localeCompare(b.sala, 'es');
     return sortByName(a, b);
   });
-  const headers = ['Turno', 'Sala', 'Apellido', 'Nombre', 'Padre', 'Teléfono padre', 'Madre', 'Teléfono madre', 'Productos pedidos', 'Fotos grupales', 'Fotos individuales', 'Fecha de pedido', 'Estado de pago', 'Monto abonado', 'Medio de pago', 'Total', 'Saldo pendiente'];
+  const headers = ['Turno', 'Sala', 'Apellido', 'Nombre', 'Padre', 'Teléfono padre', 'Madre', 'Teléfono madre', 'Productos pedidos', 'Fotos grupales', 'Fotos individuales', 'Fecha de pedido', 'Estado de pago', 'Monto abonado', 'Medio de pago', 'Total', 'Saldo pendiente', 'Enviado a imprimir', 'Fecha de envío'];
   const rows = alumnos.map(a => [
     a.turno, a.sala, a.apellido, a.nombre, a.padre, a.telefonoPadre, a.madre, a.telefonoMadre,
     productosLista(a) || '—', a.fotosGrupales.join(', '), a.fotosIndividuales.join(', '), a.fecha,
     estadoPagoLabel(a), money(calcCobrado(a)), medioPagoLabel(a),
     money(calcTotal(a)), money(calcSaldo(a)),
+    a.enviado ? 'Sí' : 'No', a.fechaEnvio || '',
   ]);
   downloadCSV(`listado_${slug(cur().nombre)}_completo.csv`, headers, rows);
 }
