@@ -613,15 +613,246 @@ table.data-table tr:last-child td { border-bottom: none; }
   .field-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* ---------- Estructura nueva: inicio, paneles, jardines ---------- */
+
+.field input[type=date] {
+  width: 100%; padding: 7px 9px; border: 1px solid var(--border);
+  border-radius: var(--radius-s); background: #FEFDFA; color: var(--ink); min-height: 34px;
+}
+.topbar-home { text-align: center; }
+.topbar-home .brand { justify-content: center; flex-wrap: wrap; }
+.topbar-nav { align-items: center; justify-content: flex-start; }
+.crumb { font-size: 1rem; color: var(--ink-soft); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; min-width: 0; }
+.crumb b { color: var(--ink); font-family: Georgia, serif; }
+.crumb-link { background: none; border: none; padding: 0; color: var(--accent-dark); font: inherit; cursor: pointer; text-decoration: underline; }
+.crumb-sep { color: var(--ink-faint); }
+
+.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+.home-card {
+  display: flex; flex-direction: column; gap: 6px; text-align: left; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px; min-height: 150px;
+  box-shadow: var(--shadow); font: inherit; color: var(--ink);
+}
+.home-card:active { transform: scale(0.99); }
+.home-card.c1 { background: #E1EDD9; }
+.home-card.c2 { background: #F5EBD3; }
+.home-card.c3 { background: #E9EFD6; }
+.home-card.c4 { background: #ECE8F0; background: #E4EEE9; }
+.home-title { font-family: Georgia, serif; font-size: 1.45rem; font-weight: 600; }
+.home-line { font-size: 0.9rem; color: var(--ink-soft); }
+.home-detail { font-size: 0.82rem; color: var(--ink-soft); margin-top: auto; }
+
+.backup-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-m); padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.backup-panel h2 { font-size: 1.05rem; }
+.backup-status { font-size: 0.88rem; color: var(--good); font-weight: 600; }
+.backup-status.warn { color: var(--warn); }
+
+.jardines-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.jardin-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow); }
+.jardin-head h3 { font-size: 1.2rem; }
+.jardin-sub { font-size: 0.82rem; color: var(--ink-faint); margin-top: 2px; }
+.jardin-money { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.jardin-money div { background: #FBF8EF; border-radius: var(--radius-s); padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+.jardin-money span { font-size: 0.7rem; color: var(--ink-faint); font-weight: 600; }
+.jardin-money b { font-size: 0.9rem; }
+.jardin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ok { color: var(--good); }
+.debt { color: var(--bad); }
+.nuevo-jardin { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-m); padding: 16px; }
+.nuevo-jardin input[type=text] { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-s); background: #FEFDFA; }
+
+.import-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); margin-bottom: 12px; }
+.import-box summary { padding: 10px 14px; cursor: pointer; font-weight: 600; font-size: 0.88rem; color: var(--ink-soft); }
+.import-body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+.sala-chip-add { border-style: dashed; color: var(--accent-dark); cursor: pointer; }
+
+.filter-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 14px; }
+.filter-row .field { min-width: 140px; }
+.filter-row > label { font-size: 0.78rem; font-weight: 600; color: var(--ink-faint); align-self: center; }
+.filter-row select { padding: 7px 9px; border: 1px solid var(--border); border-radius: var(--radius-s); background: #FEFDFA; }
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-s); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.kpi span { font-size: 0.74rem; color: var(--ink-faint); font-weight: 600; }
+.kpi b { font-family: Georgia, serif; font-size: 1.25rem; }
+
+.row-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.row-item { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 10px 12px; flex-wrap: wrap; }
+.row-main { flex: 1 1 160px; min-width: 0; }
+.row-title { font-weight: 600; font-size: 0.92rem; overflow-wrap: anywhere; }
+.row-meta { font-size: 0.78rem; color: var(--ink-faint); margin-top: 2px; }
+.row-amount { font-family: Georgia, serif; font-weight: 600; }
+.row-actions { display: flex; gap: 6px; }
+.gasto-add { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.gasto-add select, .gasto-add input { padding: 7px 9px; border: 1px solid var(--border); border-radius: var(--radius-s); background: #FEFDFA; flex: 1 1 120px; min-width: 0; }
+
+.table-wrap { overflow-x: auto; margin-bottom: 8px; -webkit-overflow-scrolling: touch; }
+.table-wrap table.data-table { min-width: 460px; }
+table.data-table tfoot td { font-weight: 700; background: #F4F0E0; border-top: 1px solid var(--border); }
+.sub-h { font-size: 0.9rem; margin: 12px 0 6px; color: var(--ink-soft); font-family: inherit; }
+.periodo-toggle { display: flex; gap: 6px; margin-bottom: 10px; }
+
+@media (max-width: 560px) {
+  .home-grid { gap: 10px; }
+  .home-card { min-height: 130px; padding: 16px 14px; }
+  .home-title { font-size: 1.2rem; }
+}
+
+/* =====================================================
+   Capa visual: estilo Mercado Pago
+   (solo diseño; no cambia estructura ni funciones)
+   ===================================================== */
+:root {
+  --bg: #F3F7F6;
+  --surface: #FFFFFF;
+  --ink: #333333;
+  --ink-soft: #666666;
+  --ink-faint: #8A8A8A;
+  --accent: #009EE3;
+  --accent-light: #E5F5FC;
+  --accent-dark: #0079B0;
+  --good: #00A650;
+  --good-bg: #E3F6EC;
+  --warn: #B87700;
+  --warn-bg: #FFF1D1;
+  --bad: #E0364A;
+  --bad-bg: #FDE7EA;
+  --border: #E3E3E3;
+  --border-soft: #F0F0F0;
+  --shadow: 0 1px 4px rgba(0,0,0,0.08);
+  --radius-s: 10px;
+  --radius-m: 16px;
+  --yellow: #D6EEFA;
+}
+html, body, h1, h2, h3, .display, .home-title, .kpi b, .row-amount, .crumb b, .kpi-card .value, .summary-total, .qty-value {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+h1, h2, h3, .display { font-weight: 700; letter-spacing: 0; }
+::selection { background: #BFE6F8; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Barra superior amarilla */
+.app-shell { padding: 0 16px 72px; }
+.topbar {
+  background: var(--yellow);
+  border-bottom: none;
+  padding: 14px 16px 12px;
+  margin: 0 -16px 16px;
+  box-shadow: 0 1px 3px rgba(0,60,90,0.10);
+}
+.topbar-home { text-align: left; padding: 26px 16px 38px; border-radius: 0 0 24px 24px; margin-bottom: 0; position: relative; }
+.topbar-home .brand { flex-direction: column; align-items: flex-start; gap: 2px; }
+.topbar-home .brand .display { font-size: 1.45rem; font-weight: 700; color: #0B4F6C; line-height: 1.15; }
+.topbar-home .brand .tag { font-size: 0.95rem; color: #0B4F6C; opacity: 0.8; }
+.topbar .btn { background: #fff; border-color: transparent; color: #333; }
+.topbar .btn:hover { background: #fff; border-color: transparent; }
+.crumb b { font-size: 1.05rem; }
+.crumb-link { color: #0B4F6C; }
+.crumb-sep { color: rgba(0,0,0,0.4); }
+.topbar-nav { gap: 12px; }
+
+.view-toggle, .period-toggle { background: rgba(0,121,176,0.12); border: none; border-radius: 999px; padding: 3px; }
+.view-toggle button, .period-toggle button { border-radius: 999px; color: #333; padding: 7px 16px; }
+.view-toggle button.active, .period-toggle button.active { background: #fff; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+.search-box input { border: none; border-radius: 999px; padding: 10px 16px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1) inset; }
+.search-box input:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+.storage-warning { border-radius: var(--radius-s); }
+
+/* Botones */
+.btn { border: 1px solid transparent; background: var(--accent-light); color: var(--accent-dark); border-radius: 10px; padding: 10px 16px; font-weight: 600; }
+.btn:hover { background: #D3EEFA; border-color: transparent; }
+.btn-primary { background: var(--accent); color: #fff; border-color: transparent; }
+.btn-primary:hover { background: var(--accent-dark); border-color: transparent; }
+.btn-small { padding: 7px 12px; font-size: 0.8rem; border-radius: 8px; }
+.btn-danger { color: var(--bad); background: var(--bad-bg); border-color: transparent; }
+.btn-danger:hover { background: #FBD3D9; border-color: transparent; }
+.topbar .btn.btn-small { background: #fff; }
+
+/* Chips de turno y sala */
+.turno-toggle { background: #fff; border-radius: 999px; padding: 3px; box-shadow: var(--shadow); gap: 2px; margin-bottom: 12px; }
+.turno-toggle button { border: none; background: transparent; padding: 8px 18px; }
+.turno-toggle button.active { background: var(--accent); color: #fff; }
+.sala-chip { border: none; box-shadow: var(--shadow); border-radius: 14px; padding: 10px 14px; color: var(--ink); }
+.sala-chip .n { color: var(--ink-faint); }
+.sala-chip.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(0,158,227,0.35); }
+.sala-chip.active .n { color: rgba(255,255,255,0.85); }
+.sala-chip-add { background: transparent; border: 1.5px dashed #B5B5B5; box-shadow: none; color: var(--accent-dark); }
+
+/* Fichas */
+.alumno-card { background: #fff; border: none; border-radius: 16px; box-shadow: var(--shadow); }
+.alumno-card > summary { padding: 14px 16px; }
+.alumno-name { font-weight: 600; }
+.pill { font-weight: 600; border-radius: 999px; }
+.pill-neutral { background: #F0F0F0; color: #777; }
+.summary-total { font-weight: 700; }
+.card-body { border-top: 1px solid var(--border-soft); }
+.field label { color: var(--ink-soft); font-weight: 600; }
+.field input[type=text], .field input[type=tel], .field input[type=number], .field input[type=date], .field select, .field textarea,
+.gasto-add select, .gasto-add input, .filter-row select, .export-row select, .nuevo-jardin input[type=text] {
+  border: 1px solid #D9D9D9; border-radius: 10px; background: #fff; padding: 9px 11px;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.field-group-title { color: var(--ink); font-weight: 700; }
+.product-check { border-radius: 12px; border-color: var(--border); }
+.product-check.active { border-color: var(--accent); background: var(--accent-light); }
+.qty-btn { border-radius: 50%; border-color: var(--accent); color: var(--accent); background: #fff; }
+.qty-value { font-weight: 700; }
+.foto-chip { border-radius: 999px; background: var(--accent-light); color: var(--accent-dark); }
+.totales-line b { font-weight: 700; }
+
+/* Paneles de inicio */
+.home-grid { margin: -22px 16px 22px; padding: 0; position: relative; gap: 12px; }
+.home-card { background: #fff !important; border: none; border-radius: 20px; padding: 18px 16px; min-height: 164px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); gap: 4px; }
+.home-icon { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 10px; background: var(--accent-light); color: var(--accent-dark); }
+.home-card.c2 .home-icon { background: #FFF1D1; color: #B87700; }
+.home-card.c3 .home-icon { background: #E3F6EC; color: #00864A; }
+.home-card.c4 .home-icon { background: #EEE8FB; color: #6A44C4; }
+.home-title { font-size: 1.15rem; font-weight: 700; }
+.home-line { color: var(--ink-soft); font-size: 0.85rem; }
+.home-detail { color: var(--ink-faint); font-size: 0.78rem; }
+.backup-panel { margin: 0 16px; border: none; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.backup-status { color: var(--good); }
+
+/* Jardines, KPIs, filas, tablas */
+.jardin-card { border: none; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.jardin-money div { background: #F5F5F5; border-radius: 12px; }
+.nuevo-jardin, .export-panel { border: none; border-radius: 20px; box-shadow: var(--shadow); }
+.import-box { border: none; border-radius: 16px; box-shadow: var(--shadow); }
+.kpi, .kpi-card { border: none; border-left: none; border-radius: 16px; box-shadow: var(--shadow); }
+.kpi b { font-weight: 700; }
+.row-item { border: none; border-radius: 14px; box-shadow: var(--shadow); }
+.row-title { font-weight: 600; }
+.table-wrap { border-radius: 16px; box-shadow: var(--shadow); background: #fff; }
+table.data-table { border: none; border-radius: 16px; }
+table.data-table th { background: #FAFAFA; color: var(--ink-soft); }
+table.data-table tfoot td { background: #F5F5F5; border-top: 1px solid var(--border); }
+.stats-section h2 { font-size: 1.1rem; }
+.ok { color: var(--good); }
+.debt { color: var(--bad); }
+.section-hint { background: #fff; border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+
+@media (max-width: 560px) {
+  .app-shell { padding: 0 12px 72px; }
+  .topbar { margin: 0 -12px 14px; padding: 12px; }
+  .topbar-home { padding: 22px 16px 36px; }
+  .home-grid { margin: -22px 0 20px; }
+  .backup-panel { margin: 0; }
+}
+.topbar-home { position: static; z-index: auto; box-shadow: none; }
+.home-grid { z-index: 2; }
+.product-check { background: #fff; }
+.product-check.active { background: var(--accent-light); }
+.sala-chips { padding-left: 2px; padding-right: 2px; }
+
 </style>
 </head>
 <body>
 <div id="app"></div>
-<input type="file" id="importFileInput" accept="application/json" style="display:none">
+<input type="file" id="importFileInput" accept="application/json,.json" style="display:none">
 <script>
 /* ===================== Datos base ===================== */
 
 const STORAGE_KEY = 'jardinFotos_v1';
+const STATE_VERSION = 4;
 
 const PRODUCTS = [
   { id: 'carpeta',         label: 'Carpeta',                        price: 20000 },
@@ -631,20 +862,35 @@ const PRODUCTS = [
   { id: 'digital',         label: 'Foto digital',                   price: 5000  },
 ];
 
+// Gastos de insumos de cada jardín (carpetas, impresión, imanes...)
 const GASTOS_CATEGORIAS_DEFAULT = ['Compra de carpetas', 'Impresión de fotos', 'Compra de imanes'];
+// Gastos personales
+const GASTOS_PERSONALES_CATEGORIAS_DEFAULT = ['Supermercado', 'Comidas', 'Gasto personal', 'Deporte', 'Transporte', 'Servicios', 'Otros'];
+const MEDIOS_PAGO = ['Efectivo', 'Transferencia', 'Tarjeta de crédito', 'Tarjeta de débito', 'Otro'];
+// Sesiones fotográficas
+const SESION_TIPOS_DEFAULT = ['Familiar', 'Bautismo', 'Fiesta', 'Retrato'];
+const SESION_GASTOS_CATEGORIAS_DEFAULT = ['Impresión de fotos', 'Álbum / marco', 'Traslado', 'Otros'];
 
-const ROSTER = [{"id": "M-MultiedadA2Y3-1", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Ramírez", "nombre": "Ámbar"}, {"id": "M-MultiedadA2Y3-2", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Sanchez", "nombre": "Joaquina"}, {"id": "M-MultiedadA2Y3-3", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Villar", "nombre": "Ema"}, {"id": "M-MultiedadA2Y3-4", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Aquiles", "nombre": "Benicio"}, {"id": "M-MultiedadA2Y3-5", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Arias", "nombre": "Bautista"}, {"id": "M-MultiedadA2Y3-6", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Galeliano", "nombre": "Benjamin"}, {"id": "M-MultiedadA2Y3-7", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Goycoa", "nombre": "Vicente"}, {"id": "M-MultiedadA2Y3-8", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Robledo", "nombre": "Joaquín"}, {"id": "M-MultiedadA2Y3-9", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Rodriguez Malizzia", "nombre": "Octavio"}, {"id": "M-MultiedadA2Y3-10", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Zocco Popovich", "nombre": "León"}, {"id": "M-MultiedadB2Y3-1", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Aramburu", "nombre": "Olivia"}, {"id": "M-MultiedadB2Y3-2", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Contreras Souto", "nombre": "Paloma"}, {"id": "M-MultiedadB2Y3-3", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Chinnici", "nombre": "Ilia Jazmin"}, {"id": "M-MultiedadB2Y3-4", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Mando", "nombre": "Alma"}, {"id": "M-MultiedadB2Y3-5", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Olivera", "nombre": "Trinidad"}, {"id": "M-MultiedadB2Y3-6", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Santellan Sanchez", "nombre": "Emma"}, {"id": "M-MultiedadB2Y3-7", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Alvarez", "nombre": "Bastian"}, {"id": "M-MultiedadB2Y3-8", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Ciano", "nombre": "Tomás"}, {"id": "M-MultiedadB2Y3-9", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Cuarterola Sanchez", "nombre": "Noah"}, {"id": "M-MultiedadB2Y3-10", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Drysdale", "nombre": "Lucas"}, {"id": "M-MultiedadB2Y3-11", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Fagnani Medina", "nombre": "Donatello"}, {"id": "M-MultiedadB2Y3-12", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Gonzalez", "nombre": "Felipe"}, {"id": "M-MultiedadB2Y3-13", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Guimil", "nombre": "Enzo"}, {"id": "M-MultiedadB2Y3-14", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Rebolledo", "nombre": "Khaled"}, {"id": "M-MultiedadC3Y4-1", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Acosta Echenique", "nombre": "Emma"}, {"id": "M-MultiedadC3Y4-2", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "D´Ambrosio", "nombre": "Alma"}, {"id": "M-MultiedadC3Y4-3", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Lagrecca", "nombre": "Emma"}, {"id": "M-MultiedadC3Y4-4", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "López", "nombre": "Brenda"}, {"id": "M-MultiedadC3Y4-5", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Rodriguez", "nombre": "Naomi"}, {"id": "M-MultiedadC3Y4-6", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Ruarte Acuña", "nombre": "Emilia"}, {"id": "M-MultiedadC3Y4-7", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Valdez Mendizabal", "nombre": "Ainhoa"}, {"id": "M-MultiedadC3Y4-8", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Duffau", "nombre": "Ramon"}, {"id": "M-MultiedadC3Y4-9", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Luján Lissarrague", "nombre": "Liborio"}, {"id": "M-MultiedadC3Y4-10", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Montaruli Bordagaray", "nombre": "Fausto"}, {"id": "M-MultiedadC3Y4-11", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Navarro", "nombre": "Eloy"}, {"id": "M-MultiedadC3Y4-12", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Páez", "nombre": "Gonzalo"}, {"id": "M-MultiedadC3Y4-13", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Peris", "nombre": "Benjamín"}, {"id": "M-MultiedadC3Y4-14", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Zabala Cabrera", "nombre": "Benicio"}, {"id": "M-MultiedadD3Y4-1", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Alfaro Acuña", "nombre": "Helena"}, {"id": "M-MultiedadD3Y4-2", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Gorosito Iannnone", "nombre": "Clementina"}, {"id": "M-MultiedadD3Y4-3", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Quiroz", "nombre": "Francesca"}, {"id": "M-MultiedadD3Y4-4", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Risso Villalba", "nombre": "Alelí"}, {"id": "M-MultiedadD3Y4-5", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Rodriguez Malizia", "nombre": "Lenna"}, {"id": "M-MultiedadD3Y4-6", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Santellan Meza", "nombre": "Nahiara"}, {"id": "M-MultiedadD3Y4-7", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Vicente", "nombre": "Milagros"}, {"id": "M-MultiedadD3Y4-8", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Alvarez", "nombre": "Valentin"}, {"id": "M-MultiedadD3Y4-9", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Basseni", "nombre": "Franchesco"}, {"id": "M-MultiedadD3Y4-10", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Bedascarrasbure Lassalle", "nombre": "Tiziano"}, {"id": "M-MultiedadD3Y4-11", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "García", "nombre": "Benjamín"}, {"id": "M-MultiedadD3Y4-12", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Pesente", "nombre": "Santino"}, {"id": "M-MultiedadD3Y4-13", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Rivero", "nombre": "Leandro"}, {"id": "M-MultiedadD3Y4-14", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Vega", "nombre": "Santino"}, {"id": "M-MultiedadE4Y5-1", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Belacin", "nombre": "Paz"}, {"id": "M-MultiedadE4Y5-2", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Beltrán", "nombre": "Anita"}, {"id": "M-MultiedadE4Y5-3", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Benitez Palais", "nombre": "Oriana"}, {"id": "M-MultiedadE4Y5-4", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Contino", "nombre": "Emilia"}, {"id": "M-MultiedadE4Y5-5", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Espil", "nombre": "Emily"}, {"id": "M-MultiedadE4Y5-6", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Lamarche", "nombre": "Carolina"}, {"id": "M-MultiedadE4Y5-7", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Cesanelli", "nombre": "Genaro"}, {"id": "M-MultiedadE4Y5-8", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Colombini", "nombre": "Johan"}, {"id": "M-MultiedadE4Y5-9", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Echazarreta", "nombre": "Ivan"}, {"id": "M-MultiedadE4Y5-10", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Ramon", "nombre": "Nahitan"}, {"id": "M-MultiedadE4Y5-11", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Romero", "nombre": "Benjamín"}, {"id": "M-MultiedadE4Y5-12", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Ruppell Kessy", "nombre": "Ignacio"}, {"id": "M-MultiedadF4Y5-1", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Barrera", "nombre": "Violeta"}, {"id": "M-MultiedadF4Y5-2", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Córdoba", "nombre": "Samira"}, {"id": "M-MultiedadF4Y5-3", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Frascaroli", "nombre": "Emma"}, {"id": "M-MultiedadF4Y5-4", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Torres", "nombre": "Isabella"}, {"id": "M-MultiedadF4Y5-5", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Angeli", "nombre": "Benicio"}, {"id": "M-MultiedadF4Y5-6", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Canales", "nombre": "Matheo"}, {"id": "M-MultiedadF4Y5-7", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Condori", "nombre": "Ciro"}, {"id": "M-MultiedadF4Y5-8", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Iezzi", "nombre": "Lorenzo"}, {"id": "M-MultiedadF4Y5-9", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Rodriguez Groh", "nombre": "Jerónimo"}, {"id": "M-MultiedadF4Y5-10", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Valenzuela", "nombre": "Felipe"}, {"id": "T-MultiedadG2Y3-1", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Díaz", "nombre": "Julieta"}, {"id": "T-MultiedadG2Y3-2", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Diaz Theisen", "nombre": "Francesca"}, {"id": "T-MultiedadG2Y3-3", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Gatti Prado", "nombre": "Selena"}, {"id": "T-MultiedadG2Y3-4", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Martínez Chaile", "nombre": "Victoria"}, {"id": "T-MultiedadG2Y3-5", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Murrones", "nombre": "Olivia"}, {"id": "T-MultiedadG2Y3-6", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Rolando Arriscal", "nombre": "Hanna"}, {"id": "T-MultiedadG2Y3-7", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Behotas Gallardo", "nombre": "Julián"}, {"id": "T-MultiedadG2Y3-8", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Falconat", "nombre": "Santino"}, {"id": "T-MultiedadG2Y3-9", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Frías Moraga", "nombre": "Martín"}, {"id": "T-MultiedadG2Y3-10", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Pèrez", "nombre": "Aaron John"}, {"id": "T-MultiedadG2Y3-11", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Rodriguez", "nombre": "Renato"}, {"id": "T-MultiedadG2Y3-12", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Sanhueza", "nombre": "Noha"}, {"id": "T-MultiedadG2Y3-13", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Yancovich", "nombre": "Lucas"}, {"id": "T-MultiedadH2Y3-1", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Alvarez Castro", "nombre": "Amelia"}, {"id": "T-MultiedadH2Y3-2", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Garcia", "nombre": "Malena"}, {"id": "T-MultiedadH2Y3-3", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Nickle", "nombre": "Sofía"}, {"id": "T-MultiedadH2Y3-4", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Ortuvia", "nombre": "Bianca"}, {"id": "T-MultiedadH2Y3-5", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Algañaraz", "nombre": "Toribio"}, {"id": "T-MultiedadH2Y3-6", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Cristo Laportilla", "nombre": "Erick"}, {"id": "T-MultiedadH2Y3-7", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Frías Cominetti", "nombre": "Liam"}, {"id": "T-MultiedadH2Y3-8", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Herrera Pollak", "nombre": "Ithan Novak"}, {"id": "T-MultiedadH2Y3-9", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Lucero Baruja", "nombre": "Isidro"}, {"id": "T-MultiedadH2Y3-10", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Moreno", "nombre": "Noha"}, {"id": "T-MultiedadH2Y3-11", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Sequeira", "nombre": "Giovanni"}, {"id": "T-MultiedadH2Y3-12", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Serrano Encina", "nombre": "Tiziano"}, {"id": "T-MultiedadH2Y3-13", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Zavala Bernazza", "nombre": "Samuel"}, {"id": "T-MultiedadI3Y4-1", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Bacci", "nombre": "Valentina"}, {"id": "T-MultiedadI3Y4-2", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Coronel", "nombre": "Paloma"}, {"id": "T-MultiedadI3Y4-3", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Gomez", "nombre": "Pia"}, {"id": "T-MultiedadI3Y4-4", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Gomez", "nombre": "Renata"}, {"id": "T-MultiedadI3Y4-5", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Maya Añasco", "nombre": "Juana"}, {"id": "T-MultiedadI3Y4-6", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Risso", "nombre": "Danna"}, {"id": "T-MultiedadI3Y4-7", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Solá Sosa", "nombre": "Nazli"}, {"id": "T-MultiedadI3Y4-8", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Tolosa Franceschetti", "nombre": "Venecia"}, {"id": "T-MultiedadI3Y4-9", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Adobatti", "nombre": "Luca"}, {"id": "T-MultiedadI3Y4-10", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Alegre", "nombre": "Camilo"}, {"id": "T-MultiedadI3Y4-11", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "De Miguel", "nombre": "Fermín"}, {"id": "T-MultiedadI3Y4-12", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Fernàndez", "nombre": "Genaro"}, {"id": "T-MultiedadI3Y4-13", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Salomón", "nombre": "Juan Bautista"}, {"id": "T-MultiedadI3Y4-14", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Ugarte", "nombre": "Homero"}, {"id": "T-MultiedadI3Y4-15", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Zampatti", "nombre": "Luka"}, {"id": "T-MultiedadJ3Y4-1", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Ávila", "nombre": "Lihué"}, {"id": "T-MultiedadJ3Y4-2", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Allende", "nombre": "Bianca"}, {"id": "T-MultiedadJ3Y4-3", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Barragán", "nombre": "Pilar"}, {"id": "T-MultiedadJ3Y4-4", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Gonzalez Bardelli", "nombre": "Roma"}, {"id": "T-MultiedadJ3Y4-5", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Hernández Basseni", "nombre": "Roma"}, {"id": "T-MultiedadJ3Y4-6", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Palma", "nombre": "Betsabé"}, {"id": "T-MultiedadJ3Y4-7", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Ramírez", "nombre": "Sara"}, {"id": "T-MultiedadJ3Y4-8", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Russo", "nombre": "Valentina"}, {"id": "T-MultiedadJ3Y4-9", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Tomes", "nombre": "Catalina"}, {"id": "T-MultiedadJ3Y4-10", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Zabala Geres", "nombre": "Emma"}, {"id": "T-MultiedadJ3Y4-11", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Algañaraz Germán", "nombre": "Henry Héctor"}, {"id": "T-MultiedadJ3Y4-12", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Buttkus Soria", "nombre": "Isaías"}, {"id": "T-MultiedadJ3Y4-13", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Castaño", "nombre": "Tadeo"}, {"id": "T-MultiedadJ3Y4-14", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Eyheralde Freyre", "nombre": "Francisco"}, {"id": "T-MultiedadJ3Y4-15", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Genaro Porro", "nombre": "Valentin"}, {"id": "T-MultiedadJ3Y4-16", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Weimann", "nombre": "Liam"}, {"id": "T-MultiedadJ3Y4-17", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Orsini", "nombre": "Brandon"}, {"id": "T-MultiedadJ3Y4-18", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Santillan Melendes", "nombre": "F. Ismael"}, {"id": "T-MultiedadK4Y5-1", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Ávila", "nombre": "Fiorella"}, {"id": "T-MultiedadK4Y5-2", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Bedascarrabure Román", "nombre": "Aitana"}, {"id": "T-MultiedadK4Y5-3", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Crivicich", "nombre": "Emma"}, {"id": "T-MultiedadK4Y5-4", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Dalcanto", "nombre": "Amaia"}, {"id": "T-MultiedadK4Y5-5", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Ferrando Palacios", "nombre": "Catalina"}, {"id": "T-MultiedadK4Y5-6", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Peralta", "nombre": "Sofía"}, {"id": "T-MultiedadK4Y5-7", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Quintas", "nombre": "Morena"}, {"id": "T-MultiedadK4Y5-8", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Racosta Laplaza", "nombre": "Tiziana"}, {"id": "T-MultiedadK4Y5-9", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Tapia Pendas", "nombre": "Lucía"}, {"id": "T-MultiedadK4Y5-10", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Usuna", "nombre": "Loa"}, {"id": "T-MultiedadK4Y5-11", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Yancovich", "nombre": "Brenda"}, {"id": "T-MultiedadK4Y5-12", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Bauer", "nombre": "Valentino"}, {"id": "T-MultiedadK4Y5-13", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Cepeda", "nombre": "Bruno"}, {"id": "T-MultiedadK4Y5-14", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Grierson", "nombre": "Emliano"}, {"id": "T-MultiedadK4Y5-15", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Nuñez Bardelli", "nombre": "Austin"}, {"id": "T-MultiedadK4Y5-16", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Porté", "nombre": "Valentino"}, {"id": "T-MultiedadK4Y5-17", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Traico", "nombre": "Mateo"}, {"id": "T-MultiedadK4Y5-18", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Zalazar Vivas", "nombre": "Valentino"}, {"id": "T-MultiedadL4Y5-1", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ferrando Meilán", "nombre": "Aitana"}, {"id": "T-MultiedadL4Y5-2", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Gonzalez", "nombre": "Clara"}, {"id": "T-MultiedadL4Y5-3", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Meilán", "nombre": "Emilia"}, {"id": "T-MultiedadL4Y5-4", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Nuñez", "nombre": "Eva"}, {"id": "T-MultiedadL4Y5-5", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Quintas", "nombre": "Malena"}, {"id": "T-MultiedadL4Y5-6", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Racosta Laplaza", "nombre": "Estefanía"}, {"id": "T-MultiedadL4Y5-7", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ruffet Renus", "nombre": "Martina"}, {"id": "T-MultiedadL4Y5-8", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Traico Durand", "nombre": "Bianca"}, {"id": "T-MultiedadL4Y5-9", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Barraza", "nombre": "Lionel"}, {"id": "T-MultiedadL4Y5-10", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Casas", "nombre": "Tadeo"}, {"id": "T-MultiedadL4Y5-11", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Costantino", "nombre": "Mateo"}, {"id": "T-MultiedadL4Y5-12", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Galizzi", "nombre": "Felipe"}, {"id": "T-MultiedadL4Y5-13", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Grierson", "nombre": "Ramiro"}, {"id": "T-MultiedadL4Y5-14", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Lombardozzo Zubigaray", "nombre": "Domingo"}, {"id": "T-MultiedadL4Y5-15", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Prado Collado", "nombre": "Fermín"}, {"id": "T-MultiedadL4Y5-16", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ramón", "nombre": "Oliver"}, {"id": "T-MultiedadL4Y5-17", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ulibarri", "nombre": "Simón"}]
-;
+const ROSTER = [{"id": "M-MultiedadA2Y3-1", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Ramírez", "nombre": "Ámbar"}, {"id": "M-MultiedadA2Y3-2", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Sanchez", "nombre": "Joaquina"}, {"id": "M-MultiedadA2Y3-3", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Villar", "nombre": "Ema"}, {"id": "M-MultiedadA2Y3-4", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Aquiles", "nombre": "Benicio"}, {"id": "M-MultiedadA2Y3-5", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Arias", "nombre": "Bautista"}, {"id": "M-MultiedadA2Y3-6", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Galeliano", "nombre": "Benjamin"}, {"id": "M-MultiedadA2Y3-7", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Goycoa", "nombre": "Vicente"}, {"id": "M-MultiedadA2Y3-8", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Robledo", "nombre": "Joaquín"}, {"id": "M-MultiedadA2Y3-9", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Rodriguez Malizzia", "nombre": "Octavio"}, {"id": "M-MultiedadA2Y3-10", "turno": "Mañana", "sala": "Multiedad A 2 Y 3", "apellido": "Zocco Popovich", "nombre": "León"}, {"id": "M-MultiedadB2Y3-1", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Aramburu", "nombre": "Olivia"}, {"id": "M-MultiedadB2Y3-2", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Contreras Souto", "nombre": "Paloma"}, {"id": "M-MultiedadB2Y3-3", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Chinnici", "nombre": "Ilia Jazmin"}, {"id": "M-MultiedadB2Y3-4", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Mando", "nombre": "Alma"}, {"id": "M-MultiedadB2Y3-5", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Olivera", "nombre": "Trinidad"}, {"id": "M-MultiedadB2Y3-6", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Santellan Sanchez", "nombre": "Emma"}, {"id": "M-MultiedadB2Y3-7", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Alvarez", "nombre": "Bastian"}, {"id": "M-MultiedadB2Y3-8", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Ciano", "nombre": "Tomás"}, {"id": "M-MultiedadB2Y3-9", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Cuarterola Sanchez", "nombre": "Noah"}, {"id": "M-MultiedadB2Y3-10", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Drysdale", "nombre": "Lucas"}, {"id": "M-MultiedadB2Y3-11", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Fagnani Medina", "nombre": "Donatello"}, {"id": "M-MultiedadB2Y3-12", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Gonzalez", "nombre": "Felipe"}, {"id": "M-MultiedadB2Y3-13", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Guimil", "nombre": "Enzo"}, {"id": "M-MultiedadB2Y3-14", "turno": "Mañana", "sala": "Multiedad B 2 Y 3", "apellido": "Rebolledo", "nombre": "Khaled"}, {"id": "M-MultiedadC3Y4-1", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Acosta Echenique", "nombre": "Emma"}, {"id": "M-MultiedadC3Y4-2", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "D´Ambrosio", "nombre": "Alma"}, {"id": "M-MultiedadC3Y4-3", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Lagrecca", "nombre": "Emma"}, {"id": "M-MultiedadC3Y4-4", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "López", "nombre": "Brenda"}, {"id": "M-MultiedadC3Y4-5", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Rodriguez", "nombre": "Naomi"}, {"id": "M-MultiedadC3Y4-6", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Ruarte Acuña", "nombre": "Emilia"}, {"id": "M-MultiedadC3Y4-7", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Valdez Mendizabal", "nombre": "Ainhoa"}, {"id": "M-MultiedadC3Y4-8", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Duffau", "nombre": "Ramon"}, {"id": "M-MultiedadC3Y4-9", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Luján Lissarrague", "nombre": "Liborio"}, {"id": "M-MultiedadC3Y4-10", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Montaruli Bordagaray", "nombre": "Fausto"}, {"id": "M-MultiedadC3Y4-11", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Navarro", "nombre": "Eloy"}, {"id": "M-MultiedadC3Y4-12", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Páez", "nombre": "Gonzalo"}, {"id": "M-MultiedadC3Y4-13", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Peris", "nombre": "Benjamín"}, {"id": "M-MultiedadC3Y4-14", "turno": "Mañana", "sala": "Multiedad C 3 Y 4", "apellido": "Zabala Cabrera", "nombre": "Benicio"}, {"id": "M-MultiedadD3Y4-1", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Alfaro Acuña", "nombre": "Helena"}, {"id": "M-MultiedadD3Y4-2", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Gorosito Iannnone", "nombre": "Clementina"}, {"id": "M-MultiedadD3Y4-3", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Quiroz", "nombre": "Francesca"}, {"id": "M-MultiedadD3Y4-4", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Risso Villalba", "nombre": "Alelí"}, {"id": "M-MultiedadD3Y4-5", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Rodriguez Malizia", "nombre": "Lenna"}, {"id": "M-MultiedadD3Y4-6", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Santellan Meza", "nombre": "Nahiara"}, {"id": "M-MultiedadD3Y4-7", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Vicente", "nombre": "Milagros"}, {"id": "M-MultiedadD3Y4-8", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Alvarez", "nombre": "Valentin"}, {"id": "M-MultiedadD3Y4-9", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Basseni", "nombre": "Franchesco"}, {"id": "M-MultiedadD3Y4-10", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Bedascarrasbure Lassalle", "nombre": "Tiziano"}, {"id": "M-MultiedadD3Y4-11", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "García", "nombre": "Benjamín"}, {"id": "M-MultiedadD3Y4-12", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Pesente", "nombre": "Santino"}, {"id": "M-MultiedadD3Y4-13", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Rivero", "nombre": "Leandro"}, {"id": "M-MultiedadD3Y4-14", "turno": "Mañana", "sala": "Multiedad D 3 Y 4", "apellido": "Vega", "nombre": "Santino"}, {"id": "M-MultiedadE4Y5-1", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Belacin", "nombre": "Paz"}, {"id": "M-MultiedadE4Y5-2", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Beltrán", "nombre": "Anita"}, {"id": "M-MultiedadE4Y5-3", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Benitez Palais", "nombre": "Oriana"}, {"id": "M-MultiedadE4Y5-4", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Contino", "nombre": "Emilia"}, {"id": "M-MultiedadE4Y5-5", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Espil", "nombre": "Emily"}, {"id": "M-MultiedadE4Y5-6", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Lamarche", "nombre": "Carolina"}, {"id": "M-MultiedadE4Y5-7", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Cesanelli", "nombre": "Genaro"}, {"id": "M-MultiedadE4Y5-8", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Colombini", "nombre": "Johan"}, {"id": "M-MultiedadE4Y5-9", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Echazarreta", "nombre": "Ivan"}, {"id": "M-MultiedadE4Y5-10", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Ramon", "nombre": "Nahitan"}, {"id": "M-MultiedadE4Y5-11", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Romero", "nombre": "Benjamín"}, {"id": "M-MultiedadE4Y5-12", "turno": "Mañana", "sala": "Multiedad E 4 Y 5", "apellido": "Ruppell Kessy", "nombre": "Ignacio"}, {"id": "M-MultiedadF4Y5-1", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Barrera", "nombre": "Violeta"}, {"id": "M-MultiedadF4Y5-2", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Córdoba", "nombre": "Samira"}, {"id": "M-MultiedadF4Y5-3", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Frascaroli", "nombre": "Emma"}, {"id": "M-MultiedadF4Y5-4", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Torres", "nombre": "Isabella"}, {"id": "M-MultiedadF4Y5-5", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Angeli", "nombre": "Benicio"}, {"id": "M-MultiedadF4Y5-6", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Canales", "nombre": "Matheo"}, {"id": "M-MultiedadF4Y5-7", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Condori", "nombre": "Ciro"}, {"id": "M-MultiedadF4Y5-8", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Iezzi", "nombre": "Lorenzo"}, {"id": "M-MultiedadF4Y5-9", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Rodriguez Groh", "nombre": "Jerónimo"}, {"id": "M-MultiedadF4Y5-10", "turno": "Mañana", "sala": "Multiedad F 4 Y 5", "apellido": "Valenzuela", "nombre": "Felipe"}, {"id": "T-MultiedadG2Y3-1", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Díaz", "nombre": "Julieta"}, {"id": "T-MultiedadG2Y3-2", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Diaz Theisen", "nombre": "Francesca"}, {"id": "T-MultiedadG2Y3-3", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Gatti Prado", "nombre": "Selena"}, {"id": "T-MultiedadG2Y3-4", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Martínez Chaile", "nombre": "Victoria"}, {"id": "T-MultiedadG2Y3-5", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Murrones", "nombre": "Olivia"}, {"id": "T-MultiedadG2Y3-6", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Rolando Arriscal", "nombre": "Hanna"}, {"id": "T-MultiedadG2Y3-7", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Behotas Gallardo", "nombre": "Julián"}, {"id": "T-MultiedadG2Y3-8", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Falconat", "nombre": "Santino"}, {"id": "T-MultiedadG2Y3-9", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Frías Moraga", "nombre": "Martín"}, {"id": "T-MultiedadG2Y3-10", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Pèrez", "nombre": "Aaron John"}, {"id": "T-MultiedadG2Y3-11", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Rodriguez", "nombre": "Renato"}, {"id": "T-MultiedadG2Y3-12", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Sanhueza", "nombre": "Noha"}, {"id": "T-MultiedadG2Y3-13", "turno": "Tarde", "sala": "Multiedad G 2 Y 3", "apellido": "Yancovich", "nombre": "Lucas"}, {"id": "T-MultiedadH2Y3-1", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Alvarez Castro", "nombre": "Amelia"}, {"id": "T-MultiedadH2Y3-2", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Garcia", "nombre": "Malena"}, {"id": "T-MultiedadH2Y3-3", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Nickle", "nombre": "Sofía"}, {"id": "T-MultiedadH2Y3-4", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Ortuvia", "nombre": "Bianca"}, {"id": "T-MultiedadH2Y3-5", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Algañaraz", "nombre": "Toribio"}, {"id": "T-MultiedadH2Y3-6", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Cristo Laportilla", "nombre": "Erick"}, {"id": "T-MultiedadH2Y3-7", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Frías Cominetti", "nombre": "Liam"}, {"id": "T-MultiedadH2Y3-8", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Herrera Pollak", "nombre": "Ithan Novak"}, {"id": "T-MultiedadH2Y3-9", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Lucero Baruja", "nombre": "Isidro"}, {"id": "T-MultiedadH2Y3-10", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Moreno", "nombre": "Noha"}, {"id": "T-MultiedadH2Y3-11", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Sequeira", "nombre": "Giovanni"}, {"id": "T-MultiedadH2Y3-12", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Serrano Encina", "nombre": "Tiziano"}, {"id": "T-MultiedadH2Y3-13", "turno": "Tarde", "sala": "Multiedad H 2 Y 3", "apellido": "Zavala Bernazza", "nombre": "Samuel"}, {"id": "T-MultiedadI3Y4-1", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Bacci", "nombre": "Valentina"}, {"id": "T-MultiedadI3Y4-2", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Coronel", "nombre": "Paloma"}, {"id": "T-MultiedadI3Y4-3", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Gomez", "nombre": "Pia"}, {"id": "T-MultiedadI3Y4-4", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Gomez", "nombre": "Renata"}, {"id": "T-MultiedadI3Y4-5", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Maya Añasco", "nombre": "Juana"}, {"id": "T-MultiedadI3Y4-6", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Risso", "nombre": "Danna"}, {"id": "T-MultiedadI3Y4-7", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Solá Sosa", "nombre": "Nazli"}, {"id": "T-MultiedadI3Y4-8", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Tolosa Franceschetti", "nombre": "Venecia"}, {"id": "T-MultiedadI3Y4-9", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Adobatti", "nombre": "Luca"}, {"id": "T-MultiedadI3Y4-10", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Alegre", "nombre": "Camilo"}, {"id": "T-MultiedadI3Y4-11", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "De Miguel", "nombre": "Fermín"}, {"id": "T-MultiedadI3Y4-12", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Fernàndez", "nombre": "Genaro"}, {"id": "T-MultiedadI3Y4-13", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Salomón", "nombre": "Juan Bautista"}, {"id": "T-MultiedadI3Y4-14", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Ugarte", "nombre": "Homero"}, {"id": "T-MultiedadI3Y4-15", "turno": "Tarde", "sala": "Multiedad I 3 Y 4", "apellido": "Zampatti", "nombre": "Luka"}, {"id": "T-MultiedadJ3Y4-1", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Ávila", "nombre": "Lihué"}, {"id": "T-MultiedadJ3Y4-2", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Allende", "nombre": "Bianca"}, {"id": "T-MultiedadJ3Y4-3", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Barragán", "nombre": "Pilar"}, {"id": "T-MultiedadJ3Y4-4", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Gonzalez Bardelli", "nombre": "Roma"}, {"id": "T-MultiedadJ3Y4-5", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Hernández Basseni", "nombre": "Roma"}, {"id": "T-MultiedadJ3Y4-6", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Palma", "nombre": "Betsabé"}, {"id": "T-MultiedadJ3Y4-7", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Ramírez", "nombre": "Sara"}, {"id": "T-MultiedadJ3Y4-8", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Russo", "nombre": "Valentina"}, {"id": "T-MultiedadJ3Y4-9", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Tomes", "nombre": "Catalina"}, {"id": "T-MultiedadJ3Y4-10", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Zabala Geres", "nombre": "Emma"}, {"id": "T-MultiedadJ3Y4-11", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Algañaraz Germán", "nombre": "Henry Héctor"}, {"id": "T-MultiedadJ3Y4-12", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Buttkus Soria", "nombre": "Isaías"}, {"id": "T-MultiedadJ3Y4-13", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Castaño", "nombre": "Tadeo"}, {"id": "T-MultiedadJ3Y4-14", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Eyheralde Freyre", "nombre": "Francisco"}, {"id": "T-MultiedadJ3Y4-15", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Genaro Porro", "nombre": "Valentin"}, {"id": "T-MultiedadJ3Y4-16", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Weimann", "nombre": "Liam"}, {"id": "T-MultiedadJ3Y4-17", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Orsini", "nombre": "Brandon"}, {"id": "T-MultiedadJ3Y4-18", "turno": "Tarde", "sala": "Multiedad J 3 Y 4", "apellido": "Santillan Melendes", "nombre": "F. Ismael"}, {"id": "T-MultiedadK4Y5-1", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Ávila", "nombre": "Fiorella"}, {"id": "T-MultiedadK4Y5-2", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Bedascarrabure Román", "nombre": "Aitana"}, {"id": "T-MultiedadK4Y5-3", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Crivicich", "nombre": "Emma"}, {"id": "T-MultiedadK4Y5-4", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Dalcanto", "nombre": "Amaia"}, {"id": "T-MultiedadK4Y5-5", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Ferrando Palacios", "nombre": "Catalina"}, {"id": "T-MultiedadK4Y5-6", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Peralta", "nombre": "Sofía"}, {"id": "T-MultiedadK4Y5-7", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Quintas", "nombre": "Morena"}, {"id": "T-MultiedadK4Y5-8", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Racosta Laplaza", "nombre": "Tiziana"}, {"id": "T-MultiedadK4Y5-9", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Tapia Pendas", "nombre": "Lucía"}, {"id": "T-MultiedadK4Y5-10", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Usuna", "nombre": "Loa"}, {"id": "T-MultiedadK4Y5-11", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Yancovich", "nombre": "Brenda"}, {"id": "T-MultiedadK4Y5-12", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Bauer", "nombre": "Valentino"}, {"id": "T-MultiedadK4Y5-13", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Cepeda", "nombre": "Bruno"}, {"id": "T-MultiedadK4Y5-14", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Grierson", "nombre": "Emliano"}, {"id": "T-MultiedadK4Y5-15", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Nuñez Bardelli", "nombre": "Austin"}, {"id": "T-MultiedadK4Y5-16", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Porté", "nombre": "Valentino"}, {"id": "T-MultiedadK4Y5-17", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Traico", "nombre": "Mateo"}, {"id": "T-MultiedadK4Y5-18", "turno": "Tarde", "sala": "Multiedad K 4 Y 5", "apellido": "Zalazar Vivas", "nombre": "Valentino"}, {"id": "T-MultiedadL4Y5-1", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ferrando Meilán", "nombre": "Aitana"}, {"id": "T-MultiedadL4Y5-2", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Gonzalez", "nombre": "Clara"}, {"id": "T-MultiedadL4Y5-3", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Meilán", "nombre": "Emilia"}, {"id": "T-MultiedadL4Y5-4", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Nuñez", "nombre": "Eva"}, {"id": "T-MultiedadL4Y5-5", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Quintas", "nombre": "Malena"}, {"id": "T-MultiedadL4Y5-6", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Racosta Laplaza", "nombre": "Estefanía"}, {"id": "T-MultiedadL4Y5-7", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ruffet Renus", "nombre": "Martina"}, {"id": "T-MultiedadL4Y5-8", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Traico Durand", "nombre": "Bianca"}, {"id": "T-MultiedadL4Y5-9", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Barraza", "nombre": "Lionel"}, {"id": "T-MultiedadL4Y5-10", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Casas", "nombre": "Tadeo"}, {"id": "T-MultiedadL4Y5-11", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Costantino", "nombre": "Mateo"}, {"id": "T-MultiedadL4Y5-12", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Galizzi", "nombre": "Felipe"}, {"id": "T-MultiedadL4Y5-13", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Grierson", "nombre": "Ramiro"}, {"id": "T-MultiedadL4Y5-14", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Lombardozzo Zubigaray", "nombre": "Domingo"}, {"id": "T-MultiedadL4Y5-15", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Prado Collado", "nombre": "Fermín"}, {"id": "T-MultiedadL4Y5-16", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ramón", "nombre": "Oliver"}, {"id": "T-MultiedadL4Y5-17", "turno": "Tarde", "sala": "Multiedad L 4 Y 5", "apellido": "Ulibarri", "nombre": "Simón"}];
 
 /* ===================== Estado ===================== */
 
 let state = null;
 let ui = {
-  view: 'fichas',       // 'fichas' | 'stats' | 'gastos'
+  screen: 'home',        // 'home' | 'jardines' | 'jardin' | 'gastos' | 'sesiones' | 'stats'
+  jardinId: null,
+  view: 'fichas',        // dentro de un jardín: 'fichas' | 'stats' | 'gastos'
   turno: 'Mañana',
   sala: null,
   search: '',
-  periodo: 'semana',     // 'semana' | 'quincena' | 'mes'
+  periodo: 'semana',     // estadísticas de un jardín: 'semana' | 'quincena' | 'mes'
+  statsPeriodo: 'mes',   // estadísticas generales
+  nuevoJardin: false,
+  gpMes: todayStr().slice(0, 7),   // gastos personales: 'todos' o 'YYYY-MM'
+  gpEditId: null,
+  sesTipo: 'todos',
+  sesMes: 'todos',
+  sesionAbierta: null,
 };
 
 function defaultAlumnoFields() {
@@ -657,15 +903,6 @@ function defaultAlumnoFields() {
     montoAbonado: 0,
     medioPago: '',
     notas: '',
-  };
-}
-
-function buildInitialState() {
-  return {
-    version: 3,
-    alumnos: ROSTER.map(r => Object.assign({ id: r.id, turno: r.turno, sala: r.sala, apellido: r.apellido, nombre: r.nombre }, defaultAlumnoFields())),
-    gastos: [],
-    gastoCategorias: [...GASTOS_CATEGORIAS_DEFAULT],
   };
 }
 
@@ -693,6 +930,107 @@ function migrateAlumno(a) {
   return out;
 }
 
+// Salas = lista ordenada de { turno, nombre }. Las que ya existen se respetan y se suman las que aparecen en los alumnos.
+function derivarSalas(salasExistentes, alumnos) {
+  const salas = [];
+  const seen = new Set();
+  const push = (turno, nombre) => {
+    const t = String(turno || '').trim(), n = String(nombre || '').trim();
+    if (!t || !n) return;
+    const k = t + '|' + n;
+    if (seen.has(k)) return;
+    seen.add(k);
+    salas.push({ turno: t, nombre: n });
+  };
+  (salasExistentes || []).forEach(s => push(s && s.turno, s && s.nombre));
+  (alumnos || []).forEach(a => push(a.turno, a.sala));
+  return salas;
+}
+
+function migrateJardin(j) {
+  const alumnos = (Array.isArray(j.alumnos) ? j.alumnos : []).map(migrateAlumno);
+  return {
+    id: j.id || uid('jardin'),
+    nombre: String(j.nombre || 'Jardín').trim() || 'Jardín',
+    salas: derivarSalas(j.salas, alumnos),
+    alumnos,
+    gastos: Array.isArray(j.gastos) ? j.gastos : [],
+    gastoCategorias: Array.isArray(j.gastoCategorias) && j.gastoCategorias.length ? j.gastoCategorias.map(String) : [...GASTOS_CATEGORIAS_DEFAULT],
+  };
+}
+
+function migrateGastoPersonal(g) {
+  return {
+    id: g.id || uid('gp'),
+    fecha: g.fecha || '',
+    monto: Number(g.monto) || 0,
+    medio: g.medio || 'Efectivo',
+    categoria: g.categoria || 'Otros',
+    descripcion: g.descripcion || '',
+  };
+}
+
+function migrateSesion(s) {
+  return {
+    id: s.id || uid('ses'),
+    fecha: s.fecha || '',
+    tipo: s.tipo || '',
+    cliente: s.cliente || '',
+    notas: s.notas || '',
+    importe: Number(s.importe) || 0,
+    estadoPago: ['pagado', 'sena', 'no_pagado'].includes(s.estadoPago) ? s.estadoPago : 'no_pagado',
+    montoAbonado: Number(s.montoAbonado) || 0,
+    medioPago: s.medioPago || '',
+    gastos: (Array.isArray(s.gastos) ? s.gastos : []).map(g => ({
+      id: g.id || uid('sg'),
+      descripcion: g.descripcion || '',
+      categoria: g.categoria || 'Otros',
+      monto: Number(g.monto) || 0,
+    })),
+  };
+}
+
+// Acepta el formato actual (v4) y los anteriores (v1-v3: un solo jardín con alumnos/gastos en la raíz → "Jardín 917").
+function migrateState(raw) {
+  if (!raw || typeof raw !== 'object') throw new Error('formato inválido');
+  let jardines;
+  if (Array.isArray(raw.jardines)) {
+    jardines = raw.jardines.map(migrateJardin);
+  } else if (Array.isArray(raw.alumnos)) {
+    jardines = [migrateJardin({ id: 'jardin_917', nombre: 'Jardín 917', alumnos: raw.alumnos, gastos: raw.gastos, gastoCategorias: raw.gastoCategorias })];
+  } else {
+    throw new Error('El archivo no tiene el formato esperado.');
+  }
+  const listOr = (v, d) => (Array.isArray(v) && v.length ? v.map(String) : [...d]);
+  const out = {
+    version: STATE_VERSION,
+    jardines,
+    gastosPersonales: (Array.isArray(raw.gastosPersonales) ? raw.gastosPersonales : []).map(migrateGastoPersonal),
+    gastoPersonalCategorias: listOr(raw.gastoPersonalCategorias, GASTOS_PERSONALES_CATEGORIAS_DEFAULT),
+    sesiones: (Array.isArray(raw.sesiones) ? raw.sesiones : []).map(migrateSesion),
+    sesionTipos: listOr(raw.sesionTipos, SESION_TIPOS_DEFAULT),
+    sesionGastoCategorias: listOr(raw.sesionGastoCategorias, SESION_GASTOS_CATEGORIAS_DEFAULT),
+    ultimoBackup: raw.ultimoBackup || null,
+  };
+  // Que las categorías/tipos ya usados en los registros siempre existan en las listas.
+  out.gastosPersonales.forEach(g => { if (!out.gastoPersonalCategorias.includes(g.categoria)) out.gastoPersonalCategorias.push(g.categoria); });
+  out.sesiones.forEach(s => {
+    if (s.tipo && !out.sesionTipos.includes(s.tipo)) out.sesionTipos.push(s.tipo);
+    s.gastos.forEach(g => { if (!out.sesionGastoCategorias.includes(g.categoria)) out.sesionGastoCategorias.push(g.categoria); });
+  });
+  return out;
+}
+
+function newJardin(nombre) {
+  return { id: uid('jardin'), nombre, salas: [], alumnos: [], gastos: [], gastoCategorias: [...GASTOS_CATEGORIAS_DEFAULT] };
+}
+
+// Estado de una instalación nueva: el listado de muestra queda cargado como "Jardín 917".
+function buildInitialState() {
+  const alumnos = ROSTER.map(r => Object.assign({ id: r.id, turno: r.turno, sala: r.sala, apellido: r.apellido, nombre: r.nombre }, defaultAlumnoFields()));
+  return migrateState({ jardines: [{ id: 'jardin_917', nombre: 'Jardín 917', alumnos }] });
+}
+
 let storageBlocked = false;
 const memoryFallback = {};
 
@@ -714,12 +1052,7 @@ function loadState() {
     return;
   }
   try {
-    const parsed = JSON.parse(raw);
-    if (!parsed || !Array.isArray(parsed.alumnos)) throw new Error('formato inválido');
-    parsed.alumnos = parsed.alumnos.map(migrateAlumno);
-    if (!Array.isArray(parsed.gastos)) parsed.gastos = [];
-    if (!Array.isArray(parsed.gastoCategorias) || !parsed.gastoCategorias.length) parsed.gastoCategorias = [...GASTOS_CATEGORIAS_DEFAULT];
-    state = parsed;
+    state = migrateState(JSON.parse(raw));
     saveState();
   } catch (e) {
     console.error('No se pudo leer los datos guardados, se reinicia con el listado base.', e);
@@ -731,6 +1064,12 @@ function loadState() {
 function saveState() {
   safeSetItem(STORAGE_KEY, JSON.stringify(state));
 }
+
+// Jardín que se está mirando (las pantallas de un jardín usan siempre este).
+function cur() {
+  return state.jardines.find(j => j.id === ui.jardinId) || state.jardines[0];
+}
+
 
 /* ===================== Cálculos ===================== */
 
@@ -761,8 +1100,10 @@ function money(n) {
   return '$' + Math.round(n).toLocaleString('es-AR');
 }
 
+let uidCounter = 0;
 function uid(prefix) {
-  return prefix + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  uidCounter++;
+  return prefix + '_' + Date.now().toString(36) + uidCounter.toString(36) + Math.random().toString(36).slice(2, 7);
 }
 
 function todayStr() {
@@ -833,23 +1174,54 @@ function productoLabel(id) {
   return p ? p.label : id;
 }
 
-/* ===================== Orden de salas (según listado original) ===================== */
 
-const SALAS_POR_TURNO = (() => {
+/* ===================== Salas y turnos del jardín actual ===================== */
+
+function turnosList(j) {
+  j = j || cur();
+  const t = ['Mañana', 'Tarde'];
+  (j ? j.salas : []).forEach(s => { if (!t.includes(s.turno)) t.push(s.turno); });
+  return t;
+}
+
+function salasPorTurno(j) {
+  j = j || cur();
   const map = {};
-  ROSTER.forEach(r => {
-    if (!map[r.turno]) map[r.turno] = [];
-    if (!map[r.turno].includes(r.sala)) map[r.turno].push(r.sala);
-  });
+  turnosList(j).forEach(t => { map[t] = []; });
+  (j ? j.salas : []).forEach(s => { map[s.turno].push(s.nombre); });
   return map;
-})();
+}
 
-const TURNOS = Object.keys(SALAS_POR_TURNO);
+/* ===================== Navegación y render raíz ===================== */
 
-/* ===================== Render raíz ===================== */
+const SCREEN_TITLES = { jardines: 'Jardines', gastos: 'Gastos personales', sesiones: 'Sesiones', stats: 'Estadísticas generales' };
+
+let lastScreenKey = null;
+
+function screenKey() {
+  return ui.screen + (ui.screen === 'jardin' ? ':' + ui.jardinId + ':' + ui.view : '');
+}
+
+function navigate(screen, opts) {
+  opts = opts || {};
+  if (screen === 'jardin' && opts.jardinId) {
+    if (opts.jardinId !== ui.jardinId) { ui.turno = 'Mañana'; ui.sala = null; ui.view = 'fichas'; }
+    ui.jardinId = opts.jardinId;
+  }
+  if (screen !== 'jardin') ui.search = '';
+  if (screen !== 'jardines') ui.nuevoJardin = false;
+  ui.screen = screen;
+  lastScreenKey = null;   // al cambiar de pantalla se vuelve arriba
+  window.scrollTo(0, 0);
+  render();
+}
 
 function render() {
   try {
+    if (ui.screen === 'jardin' && !state.jardines.some(j => j.id === ui.jardinId)) ui.screen = 'jardines';
+    const key = screenKey();
+    const keepY = key === lastScreenKey ? window.scrollY : 0;
+
     const app = document.getElementById('app');
     app.innerHTML = `
       <div class="app-shell">
@@ -857,34 +1229,55 @@ function render() {
         <div id="viewport"></div>
       </div>
     `;
-    document.getElementById('viewport').innerHTML = ui.view === 'stats' ? renderStats() : (ui.view === 'gastos' ? renderGastos() : renderFichas());
+    const vp = document.getElementById('viewport');
+    switch (ui.screen) {
+      case 'jardines':
+        vp.innerHTML = renderJardines(); attachJardinesHandlers(); break;
+      case 'jardin':
+        vp.innerHTML = ui.view === 'stats' ? renderStats() : (ui.view === 'gastos' ? renderGastosJardin() : renderFichas());
+        if (ui.view === 'fichas') attachFichasHandlers();
+        if (ui.view === 'stats') attachStatsHandlers();
+        if (ui.view === 'gastos') attachGastosJardinHandlers();
+        break;
+      case 'gastos':
+        vp.innerHTML = renderGastosPersonales(); attachGastosPersonalesHandlers(); break;
+      case 'sesiones':
+        vp.innerHTML = renderSesiones(); attachSesionesHandlers(); break;
+      case 'stats':
+        vp.innerHTML = renderStatsGenerales(); attachStatsGeneralesHandlers(); break;
+      default:
+        vp.innerHTML = renderHome(); attachHomeHandlers();
+    }
     attachGlobalHandlers();
-    if (ui.view === 'fichas') attachFichasHandlers();
-    if (ui.view === 'stats') attachStatsHandlers();
-    if (ui.view === 'gastos') attachGastosHandlers();
+    lastScreenKey = key;
+    if (keepY) window.scrollTo(0, keepY);
   } catch (err) {
     showFatalError(err);
   }
 }
 
 function renderTopbar() {
-  return `
-    <div class="topbar">
-      ${storageBlocked ? `
-        <div class="storage-warning">
-          ⚠️ Este dispositivo/navegador no permite guardar datos en este archivo, así que lo que cargues ahora <b>no se va a guardar</b> al cerrar. Para que quede guardado, subí el archivo a un hosting (ej. GitHub Pages) y abrilo desde esa dirección web.
-        </div>
-      ` : ''}
-      <div class="topbar-row1">
+  const warn = storageBlocked ? `
+    <div class="storage-warning">
+      ⚠️ Este dispositivo/navegador no permite guardar datos en este archivo, así que lo que cargues ahora <b>no se va a guardar</b> al cerrar. Para que quede guardado, subí el archivo a un hosting (ej. GitHub Pages) y abrilo desde esa dirección web.
+    </div>` : '';
+
+  if (ui.screen === 'home') {
+    return `
+      <div class="topbar topbar-home">
+        ${warn}
         <div class="brand">
           <h1 class="display">Virginia Migueltorena</h1>
-          <span class="tag">Fotografía · gestión de pedidos</span>
+          <span class="tag">Fotografía</span>
         </div>
-        <div class="topbar-actions">
-          <button class="btn btn-small" id="btnExportBackup">Exportar backup (JSON)</button>
-          <button class="btn btn-small" id="btnImportBackup">Importar backup</button>
-        </div>
-      </div>
+      </div>`;
+  }
+
+  const j = ui.screen === 'jardin' ? cur() : null;
+  const crumb = j
+    ? `<button class="crumb-link" data-nav="jardines">Jardines</button><span class="crumb-sep">›</span><b>${escapeHtml(j.nombre)}</b>`
+    : `<b>${escapeHtml(SCREEN_TITLES[ui.screen] || '')}</b>`;
+  const row2 = j ? `
       <div class="topbar-row2">
         <div class="view-toggle">
           <button data-view="fichas" class="${ui.view === 'fichas' ? 'active' : ''}">Fichas</button>
@@ -896,18 +1289,101 @@ function renderTopbar() {
             <input type="text" id="searchInput" placeholder="Buscar por alumno o N° de foto…" value="${escapeAttr(ui.search)}">
           </div>
         ` : ''}
+      </div>` : '';
+
+  return `
+    <div class="topbar">
+      ${warn}
+      <div class="topbar-row1 topbar-nav">
+        <button class="btn btn-small" data-nav="home">← Inicio</button>
+        <div class="crumb">${crumb}</div>
+      </div>
+      ${row2}
+    </div>`;
+}
+
+function attachGlobalHandlers() {
+  document.querySelectorAll('[data-nav]').forEach(btn => {
+    btn.addEventListener('click', () => navigate(btn.dataset.nav));
+  });
+  document.querySelectorAll('.view-toggle button[data-view]').forEach(btn => {
+    btn.addEventListener('click', () => { ui.view = btn.dataset.view; render(); });
+  });
+  const be = document.getElementById('btnExportBackup');
+  if (be) be.addEventListener('click', exportBackup);
+  const bi = document.getElementById('btnImportBackup');
+  if (bi) bi.addEventListener('click', () => document.getElementById('importFileInput').click());
+}
+
+/* ===================== Pantalla inicial ===================== */
+
+function diasDesde(iso) {
+  const t = Date.parse(iso);
+  if (isNaN(t)) return null;
+  return Math.floor((Date.now() - t) / 86400000);
+}
+
+function renderHome() {
+  const t = totalesGenerales();
+  const nJ = state.jardines.length;
+  const nAlumnos = state.jardines.reduce((s, j) => s + j.alumnos.length, 0);
+  const mesActual = todayStr().slice(0, 7);
+  const gastoMes = state.gastosPersonales
+    .filter(g => (g.fecha || '').slice(0, 7) === mesActual)
+    .reduce((s, g) => s + (Number(g.monto) || 0), 0);
+
+  const ICONS = {"jardines": `<path d="M3 21V10l9-6 9 6v11M9 21v-6h6v6"/>`, "gastos": `<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/>`, "sesiones": `<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>`, "stats": `<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>`};
+  const cards = [
+    { nav: 'jardines', cls: 'c1', titulo: 'Jardines',
+      linea: `${nJ} ${nJ === 1 ? 'jardín' : 'jardines'} · ${nAlumnos} alumnos`,
+      detalle: `Cobrado ${money(t.jardines.cobrado)} · a cobrar ${money(t.jardines.aCobrar)}` },
+    { nav: 'gastos', cls: 'c2', titulo: 'Gastos',
+      linea: 'Gastos personales',
+      detalle: `Este mes: ${money(gastoMes)}` },
+    { nav: 'sesiones', cls: 'c3', titulo: 'Sesiones',
+      linea: `${t.sesiones.n} ${t.sesiones.n === 1 ? 'sesión' : 'sesiones'}`,
+      detalle: `Ingresos ${money(t.sesiones.importe)} · margen ${money(t.sesiones.margen)}` },
+    { nav: 'stats', cls: 'c4', titulo: 'Estadísticas',
+      linea: 'Ingresos, egresos y balance',
+      detalle: `Balance del negocio ${money(t.negocio.balance)}` },
+  ];
+
+  const dias = state.ultimoBackup ? diasDesde(state.ultimoBackup) : null;
+  let backupLine, backupCls = '';
+  if (dias === null) {
+    backupLine = 'Todavía no hiciste ningún backup.'; backupCls = 'warn';
+  } else {
+    const f = fmtFecha(String(state.ultimoBackup).slice(0, 10));
+    backupLine = `Último backup: ${f}${dias <= 0 ? ' (hoy)' : dias === 1 ? ' (ayer)' : ` (hace ${dias} días)`}`;
+    if (dias >= 7) backupCls = 'warn';
+  }
+
+  return `
+    <div class="home-grid">
+      ${cards.map(c => `
+        <button class="home-card ${c.cls}" data-nav="${c.nav}">
+          <span class="home-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[c.nav]}</svg></span>
+          <span class="home-title">${c.titulo}</span>
+          <span class="home-line">${escapeHtml(c.linea)}</span>
+          <span class="home-detail">${escapeHtml(c.detalle)}</span>
+        </button>`).join('')}
+    </div>
+
+    <div class="backup-panel">
+      <h2>Copia de seguridad</h2>
+      <p class="muted">Todo lo que cargás se guarda solo en este dispositivo. Exportá un backup de vez en cuando; también sirve para pasar todos los datos a otro celular o computadora.</p>
+      <div class="backup-status ${backupCls}">${backupLine}</div>
+      <div class="export-row">
+        <button class="btn btn-primary" id="btnExportBackup">Exportar backup (JSON)</button>
+        <button class="btn" id="btnImportBackup">Importar backup</button>
       </div>
     </div>
   `;
 }
 
-function attachGlobalHandlers() {
-  document.querySelectorAll('.view-toggle button').forEach(btn => {
-    btn.addEventListener('click', () => { ui.view = btn.dataset.view; render(); });
-  });
-  document.getElementById('btnExportBackup').addEventListener('click', exportBackup);
-  document.getElementById('btnImportBackup').addEventListener('click', () => document.getElementById('importFileInput').click());
-}
+function attachHomeHandlers() { /* la navegación y el backup se enganchan en attachGlobalHandlers */ }
+
+/* ===================== Arranque y errores ===================== */
 
 function showFatalError(err) {
   console.error(err);
@@ -933,16 +1409,1117 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+/* ===================== Pantalla: Jardines ===================== */
+
+function jardinTotales(j) {
+  let total = 0, cobrado = 0, pedidos = 0;
+  j.alumnos.forEach(a => {
+    const t = calcTotal(a);
+    if (t > 0) { pedidos++; total += t; cobrado += Math.min(calcCobrado(a), t); }
+  });
+  return { alumnos: j.alumnos.length, salas: j.salas.length, pedidos, total, cobrado, aCobrar: total - cobrado };
+}
+
+function renderJardines() {
+  const cards = state.jardines.map(j => {
+    const t = jardinTotales(j);
+    return `
+      <div class="jardin-card" data-jardin="${escapeAttr(j.id)}">
+        <div class="jardin-head">
+          <h3>${escapeHtml(j.nombre)}</h3>
+          <div class="jardin-sub">${t.alumnos} alumnos · ${t.salas} salas · ${t.pedidos} pedidos</div>
+        </div>
+        <div class="jardin-money">
+          <div><span>Total</span><b>${money(t.total)}</b></div>
+          <div><span>Cobrado</span><b class="ok">${money(t.cobrado)}</b></div>
+          <div><span>A cobrar</span><b class="debt">${money(t.aCobrar)}</b></div>
+        </div>
+        <div class="jardin-actions">
+          <button class="btn btn-primary" data-abrir-jardin="${escapeAttr(j.id)}">Abrir</button>
+          <button class="btn btn-small" data-renombrar-jardin="${escapeAttr(j.id)}">Renombrar</button>
+          <button class="btn btn-small" data-eliminar-jardin="${escapeAttr(j.id)}">Eliminar</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  const nuevo = ui.nuevoJardin ? `
+    <div class="stats-section nuevo-jardin">
+      <h2>Nuevo jardín</h2>
+      <div class="field"><label>Nombre del jardín</label><input type="text" id="nuevoJardinNombre" placeholder="Ej: Jardín 12 Los Pinos"></div>
+      <div class="field" style="margin-top:10px">
+        <label>Listado de alumnos (opcional)</label>
+        <input type="file" id="nuevoJardinArchivo" accept=".xlsx,.csv,.txt,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">
+      </div>
+      <p class="muted">Podés importar el listado desde un Excel (.xlsx) o CSV, o crear el jardín vacío y cargar las salas y alumnos a mano. Para que la importación salga bien, usá el modelo.</p>
+      <div class="export-row">
+        <button class="btn btn-primary" id="btnCrearJardin">Crear jardín</button>
+        <button class="btn" id="btnModeloExcel">Descargar modelo de Excel</button>
+        <button class="btn" id="btnCancelarJardin">Cancelar</button>
+      </div>
+    </div>` : `
+    <div class="export-row"><button class="btn btn-primary" id="btnNuevoJardin">+ Nuevo jardín</button></div>`;
+
+  return `
+    <div class="jardines-list">${cards || '<div class="section-hint">Todavía no hay jardines.</div>'}</div>
+    ${nuevo}
+  `;
+}
+
+function attachJardinesHandlers() {
+  document.querySelectorAll('[data-abrir-jardin]').forEach(b => b.addEventListener('click', () => navigate('jardin', { jardinId: b.dataset.abrirJardin })));
+  document.querySelectorAll('[data-renombrar-jardin]').forEach(b => b.addEventListener('click', () => {
+    const j = state.jardines.find(x => x.id === b.dataset.renombrarJardin);
+    if (!j) return;
+    const n = prompt('Nuevo nombre del jardín:', j.nombre);
+    if (n === null) return;
+    const nombre = n.trim();
+    if (!nombre) { alert('El nombre no puede quedar vacío.'); return; }
+    j.nombre = nombre; saveState(); render();
+  }));
+  document.querySelectorAll('[data-eliminar-jardin]').forEach(b => b.addEventListener('click', () => {
+    const j = state.jardines.find(x => x.id === b.dataset.eliminarJardin);
+    if (!j) return;
+    if (!confirm(`¿Eliminar "${j.nombre}" con sus ${j.alumnos.length} alumnos, pedidos y gastos? No se puede deshacer (te recomiendo exportar un backup antes).`)) return;
+    const t = prompt(`Para confirmar, escribí el nombre del jardín exactamente:\n${j.nombre}`);
+    if (t === null || t.trim() !== j.nombre) { alert('El nombre no coincide. No se eliminó nada.'); return; }
+    state.jardines = state.jardines.filter(x => x.id !== j.id);
+    saveState(); render();
+  }));
+  const bn = document.getElementById('btnNuevoJardin');
+  if (bn) bn.addEventListener('click', () => { ui.nuevoJardin = true; render(); });
+  const bc = document.getElementById('btnCancelarJardin');
+  if (bc) bc.addEventListener('click', () => { ui.nuevoJardin = false; render(); });
+  const bm = document.getElementById('btnModeloExcel');
+  if (bm) bm.addEventListener('click', descargarModeloExcel);
+  const bcr = document.getElementById('btnCrearJardin');
+  if (bcr) bcr.addEventListener('click', crearJardin);
+}
+
+async function crearJardin() {
+  const nombre = document.getElementById('nuevoJardinNombre').value.trim();
+  if (!nombre) { alert('Escribí el nombre del jardín.'); return; }
+  const file = document.getElementById('nuevoJardinArchivo').files[0];
+  let parsed = null;
+  if (file) {
+    try { parsed = await leerAlumnosDeArchivo(file); }
+    catch (e) { alert('No pude leer el archivo: ' + e.message); return; }
+    if (!confirm(resumenImport(parsed, nombre))) return;
+  }
+  const j = newJardin(nombre);
+  state.jardines.push(j);
+  let msg = `Jardín "${nombre}" creado.`;
+  if (parsed) msg = mensajeResultadoImport(aplicarImportAlumnos(j, parsed));
+  else msg += ' Ahora agregá las salas y los alumnos.';
+  saveState();
+  navigate('jardin', { jardinId: j.id });
+  alert(msg);
+}
+
+// Agrega una sala vacía al turno activo del jardín.
+function agregarSala() {
+  const j = cur();
+  const n = prompt(`Nombre de la nueva sala (turno ${ui.turno}):`);
+  if (n === null) return;
+  const nombre = n.trim();
+  if (!nombre) return;
+  if (j.salas.some(s => s.turno === ui.turno && normalize(s.nombre) === normalize(nombre))) { alert('Ya existe una sala con ese nombre en este turno.'); return; }
+  j.salas.push({ turno: ui.turno, nombre });
+  ui.sala = nombre;
+  saveState(); render();
+}
+
+function onEliminarSalaClick() {
+  const j = cur();
+  if (j.alumnos.some(a => a.turno === ui.turno && a.sala === ui.sala)) { alert('La sala tiene alumnos. Eliminá primero a los alumnos.'); return; }
+  if (!confirm(`¿Eliminar la sala "${ui.sala}"?`)) return;
+  j.salas = j.salas.filter(s => !(s.turno === ui.turno && s.nombre === ui.sala));
+  ui.sala = null;
+  saveState(); render();
+}
+
+/* ===================== Utilidades comunes de los paneles ===================== */
+
+function fmtFecha(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || '');
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : '—';
+}
+
+function mesLabel(ym) {
+  const m = /^(\d{4})-(\d{2})$/.exec(ym || '');
+  if (!m) return 'Sin fecha';
+  const n = MESES[Number(m[2]) - 1];
+  return `${n[0].toUpperCase()}${n.slice(1)} ${m[1]}`;
+}
+
+function mesesOpciones(fechas, actual) {
+  const set = new Set(fechas.map(f => (f || '').slice(0, 7)).filter(x => /^\d{4}-\d{2}$/.test(x)));
+  set.add(todayStr().slice(0, 7));
+  if (/^\d{4}-\d{2}$/.test(actual)) set.add(actual);
+  return Array.from(set).sort().reverse();
+}
+
+function medioLabel(m) {
+  if (!m) return 'Sin especificar';
+  const v = String(m);
+  if (v === 'efectivo') return 'Efectivo';
+  if (v === 'transferencia') return 'Transferencia';
+  if (v === 'otro') return 'Otro';
+  return v;
+}
+
+function sumBy(list, fn) { return list.reduce((s, x) => s + (Number(fn(x)) || 0), 0); }
+
+// Agrupa [{k, v}] sumando por clave → [[clave, total, cantidad]] ordenado por total desc.
+function groupSum(list, keyFn, valFn) {
+  const m = new Map();
+  list.forEach(x => {
+    const k = keyFn(x);
+    const e = m.get(k) || [k, 0, 0];
+    e[1] += Number(valFn(x)) || 0; e[2] += 1;
+    m.set(k, e);
+  });
+  return Array.from(m.values()).sort((a, b) => b[1] - a[1]);
+}
+
+function simpleTable(rows, headA, headB) {
+  if (!rows.length) return '<div class="muted">Sin datos.</div>';
+  return `<div class="table-wrap"><table class="data-table"><thead><tr><th>${headA}</th><th class="num">Cant.</th><th class="num">${headB}</th></tr></thead><tbody>
+    ${rows.map(r => `<tr><td>${escapeHtml(r[0])}</td><td class="num">${r[2]}</td><td class="num">${money(r[1])}</td></tr>`).join('')}
+  </tbody></table></div>`;
+}
+
+/* ===================== Gastos personales ===================== */
+
+function renderGastosPersonales() {
+  const todos = state.gastosPersonales;
+  const meses = mesesOpciones(todos.map(g => g.fecha), ui.gpMes);
+  const lista = todos
+    .filter(g => ui.gpMes === 'todos' || (g.fecha || '').slice(0, 7) === ui.gpMes)
+    .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+  const total = sumBy(lista, g => g.monto);
+  const edit = ui.gpEditId ? todos.find(g => g.id === ui.gpEditId) : null;
+  const v = edit || { fecha: todayStr(), monto: '', medio: 'Efectivo', categoria: state.gastoPersonalCategorias[0], descripcion: '' };
+  const cats = state.gastoPersonalCategorias;
+
+  return `
+    <div class="stats-section">
+      <h2>${edit ? 'Editar gasto' : 'Registrar gasto'}</h2>
+      <div class="export-panel">
+        <div class="field-grid" style="margin:0">
+          <div class="field"><label>Fecha</label><input type="date" id="gpFecha" value="${escapeAttr(v.fecha)}"></div>
+          <div class="field"><label>Importe</label><input type="number" min="0" step="100" inputmode="decimal" id="gpMonto" value="${v.monto === '' ? '' : Number(v.monto)}" placeholder="0"></div>
+          <div class="field"><label>Medio de pago</label>
+            <select id="gpMedio">${MEDIOS_PAGO.map(m => `<option ${m === v.medio ? 'selected' : ''}>${escapeHtml(m)}</option>`).join('')}</select>
+          </div>
+          <div class="field"><label>Categoría</label>
+            <select id="gpCategoria">
+              ${cats.map(c => `<option value="${escapeAttr(c)}" ${c === v.categoria ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('')}
+              <option value="__nueva__">+ Nueva categoría…</option>
+            </select>
+          </div>
+          <div class="field" style="grid-column:1/-1"><label>Descripción (opcional)</label><input type="text" id="gpDescripcion" value="${escapeAttr(v.descripcion)}" placeholder="Ej: compra semanal"></div>
+        </div>
+        <div class="export-row">
+          <button class="btn btn-primary" id="btnGpGuardar">${edit ? 'Guardar cambios' : 'Agregar gasto'}</button>
+          ${edit ? '<button class="btn" id="btnGpCancelar">Cancelar</button>' : ''}
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <div class="filter-row">
+        <label>Mes</label>
+        <select id="gpMes">
+          <option value="todos" ${ui.gpMes === 'todos' ? 'selected' : ''}>Todos</option>
+          ${meses.map(m => `<option value="${m}" ${ui.gpMes === m ? 'selected' : ''}>${mesLabel(m)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><span>Total gastado</span><b>${money(total)}</b></div>
+        <div class="kpi"><span>Gastos</span><b>${lista.length}</b></div>
+      </div>
+      <h2>Por categoría</h2>
+      ${simpleTable(groupSum(lista, g => g.categoria, g => g.monto), 'Categoría', 'Total')}
+      <h2 style="margin-top:16px">Por medio de pago</h2>
+      ${simpleTable(groupSum(lista, g => g.medio, g => g.monto), 'Medio', 'Total')}
+    </div>
+
+    <div class="stats-section">
+      <h2>Detalle</h2>
+      <div class="row-list">
+        ${lista.length ? lista.map(g => `
+          <div class="row-item">
+            <div class="row-main">
+              <div class="row-title">${escapeHtml(g.categoria)}${g.descripcion ? ' · ' + escapeHtml(g.descripcion) : ''}</div>
+              <div class="row-meta">${fmtFecha(g.fecha)} · ${escapeHtml(g.medio)}</div>
+            </div>
+            <div class="row-amount">${money(g.monto)}</div>
+            <div class="row-actions">
+              <button class="btn btn-small" data-gp-edit="${escapeAttr(g.id)}">Editar</button>
+              <button class="btn btn-small" data-gp-del="${escapeAttr(g.id)}">Eliminar</button>
+            </div>
+          </div>`).join('') : '<div class="muted">No hay gastos en este período.</div>'}
+      </div>
+    </div>`;
+}
+
+function attachGastosPersonalesHandlers() {
+  const cat = document.getElementById('gpCategoria');
+  let prevCat = cat.value;
+  cat.addEventListener('change', () => {
+    if (cat.value !== '__nueva__') { prevCat = cat.value; return; }
+    const n = (prompt('Nombre de la nueva categoría:') || '').trim();
+    if (!n) { cat.value = prevCat; return; }
+    if (!state.gastoPersonalCategorias.includes(n)) state.gastoPersonalCategorias.push(n);
+    const opt = document.createElement('option');
+    opt.value = n; opt.textContent = n;
+    cat.insertBefore(opt, cat.querySelector('option[value="__nueva__"]'));
+    cat.value = n; prevCat = n;
+    saveState();
+  });
+  document.getElementById('gpMes').addEventListener('change', e => { ui.gpMes = e.target.value; render(); });
+  document.getElementById('btnGpGuardar').addEventListener('click', () => {
+    const monto = Number(document.getElementById('gpMonto').value) || 0;
+    if (monto <= 0) { alert('Ingresá un importe mayor a 0.'); return; }
+    if (cat.value === '__nueva__') { alert('Elegí una categoría.'); return; }
+    const datos = {
+      fecha: document.getElementById('gpFecha').value || todayStr(),
+      monto,
+      medio: document.getElementById('gpMedio').value,
+      categoria: cat.value,
+      descripcion: document.getElementById('gpDescripcion').value.trim(),
+    };
+    if (ui.gpEditId) {
+      const g = state.gastosPersonales.find(x => x.id === ui.gpEditId);
+      if (g) Object.assign(g, datos);
+      ui.gpEditId = null;
+    } else {
+      state.gastosPersonales.push(Object.assign({ id: uid('gp') }, datos));
+      // Para que el gasto recién cargado sea visible, el filtro pasa a su mes.
+      if (ui.gpMes !== 'todos') ui.gpMes = datos.fecha.slice(0, 7);
+    }
+    saveState(); render();
+  });
+  const bc = document.getElementById('btnGpCancelar');
+  if (bc) bc.addEventListener('click', () => { ui.gpEditId = null; render(); });
+  document.querySelectorAll('[data-gp-edit]').forEach(b => b.addEventListener('click', () => {
+    ui.gpEditId = b.dataset.gpEdit; render(); window.scrollTo(0, 0);
+  }));
+  document.querySelectorAll('[data-gp-del]').forEach(b => b.addEventListener('click', () => {
+    if (!confirm('¿Eliminar este gasto?')) return;
+    state.gastosPersonales = state.gastosPersonales.filter(g => g.id !== b.dataset.gpDel);
+    if (ui.gpEditId === b.dataset.gpDel) ui.gpEditId = null;
+    saveState(); render();
+  }));
+}
+
+/* ===================== Sesiones ===================== */
+
+function sesionCalc(s) {
+  const gastos = sumBy(s.gastos, g => g.monto);
+  const importe = Number(s.importe) || 0;
+  let cobrado = 0;
+  if (s.estadoPago === 'pagado') cobrado = importe;
+  else if (s.estadoPago === 'sena') cobrado = Math.min(Number(s.montoAbonado) || 0, importe);
+  return { gastos, importe, cobrado, aCobrar: importe - cobrado, margen: importe - gastos };
+}
+
+function sesionEstado(s) {
+  if (s.estadoPago === 'pagado') return { label: 'Cobrada', cls: 'pill-good' };
+  if (s.estadoPago === 'sena') return { label: 'Seña / parcial', cls: 'pill-warn' };
+  return { label: 'Pendiente', cls: 'pill-bad' };
+}
+
+function sesionesFiltradas() {
+  return state.sesiones
+    .filter(s => (ui.sesTipo === 'todos' || s.tipo === ui.sesTipo)
+      && (ui.sesMes === 'todos' || (s.fecha || '').slice(0, 7) === ui.sesMes))
+    .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+}
+
+function renderSesionCard(s) {
+  const c = sesionCalc(s);
+  const st = sesionEstado(s);
+  const title = [s.tipo || 'Sesión', s.cliente].filter(Boolean).join(' · ');
+  return `
+    <details class="alumno-card" data-sid="${escapeAttr(s.id)}" ${ui.sesionAbierta === s.id ? 'open' : ''}>
+      <summary>
+        <div>
+          <div class="alumno-name" data-role="sTitle">${escapeHtml(title)}</div>
+          <div class="alumno-sub">${fmtFecha(s.fecha)}</div>
+        </div>
+        <div class="summary-right">
+          <span class="pill ${st.cls}" data-role="sPill">${st.label}</span>
+          <span class="summary-total" data-role="sImporte">${c.importe > 0 ? money(c.importe) : '—'}</span>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </summary>
+      <div class="card-body">
+        <div class="field-grid">
+          <div class="field"><label>Fecha</label><input type="date" data-sf="fecha" value="${escapeAttr(s.fecha)}"></div>
+          <div class="field"><label>Tipo de sesión</label>
+            <select data-sf="tipo">
+              ${state.sesionTipos.map(t => `<option value="${escapeAttr(t)}" ${t === s.tipo ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('')}
+              <option value="__nuevo__">+ Nuevo tipo…</option>
+            </select>
+          </div>
+          <div class="field" style="grid-column:1/-1"><label>Cliente / descripción</label><input type="text" data-sf="cliente" value="${escapeAttr(s.cliente)}" placeholder="Ej: Familia Pérez"></div>
+        </div>
+
+        <div class="field-group-title">Cobro</div>
+        <div class="payment-row">
+          <div class="field" style="min-width:130px"><label>Importe</label><input type="number" min="0" step="500" inputmode="decimal" data-sf="importe" value="${c.importe || ''}" placeholder="0"></div>
+          <div class="field" style="min-width:150px"><label>Estado</label>
+            <select data-sf="estadoPago">
+              <option value="no_pagado" ${s.estadoPago === 'no_pagado' ? 'selected' : ''}>Pendiente</option>
+              <option value="sena" ${s.estadoPago === 'sena' ? 'selected' : ''}>Seña / pago parcial</option>
+              <option value="pagado" ${s.estadoPago === 'pagado' ? 'selected' : ''}>Cobrada completa</option>
+            </select>
+          </div>
+          <div class="field" style="min-width:130px" data-role="sAbonadoField" ${s.estadoPago === 'sena' ? '' : 'hidden'}>
+            <label>Monto abonado</label><input type="number" min="0" step="500" data-sf="montoAbonado" value="${Number(s.montoAbonado) || 0}">
+          </div>
+          <div class="field" style="min-width:150px"><label>Medio de pago</label>
+            <select data-sf="medioPago">
+              <option value="" ${!s.medioPago ? 'selected' : ''}>—</option>
+              <option value="efectivo" ${s.medioPago === 'efectivo' ? 'selected' : ''}>Efectivo</option>
+              <option value="transferencia" ${s.medioPago === 'transferencia' ? 'selected' : ''}>Transferencia</option>
+              <option value="otro" ${s.medioPago === 'otro' ? 'selected' : ''}>Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group-title">Gastos de esta sesión</div>
+        <div class="row-list" data-role="sGastos">
+          ${s.gastos.length ? s.gastos.map(g => `
+            <div class="row-item">
+              <div class="row-main"><div class="row-title">${escapeHtml(g.categoria)}${g.descripcion ? ' · ' + escapeHtml(g.descripcion) : ''}</div></div>
+              <div class="row-amount">${money(g.monto)}</div>
+              <div class="row-actions"><button type="button" class="btn btn-small" data-del-sg="${escapeAttr(g.id)}">Quitar</button></div>
+            </div>`).join('') : '<div class="muted">Sin gastos cargados.</div>'}
+        </div>
+        <div class="gasto-add">
+          <select data-sg="categoria">
+            ${state.sesionGastoCategorias.map(c2 => `<option value="${escapeAttr(c2)}">${escapeHtml(c2)}</option>`).join('')}
+            <option value="__nueva__">+ Nueva categoría…</option>
+          </select>
+          <input type="text" data-sg="descripcion" placeholder="Descripción (opcional)">
+          <input type="number" min="0" step="100" inputmode="decimal" data-sg="monto" placeholder="Monto">
+          <button type="button" class="btn btn-small btn-primary" data-add-sg="1">Agregar gasto</button>
+        </div>
+
+        <div class="totales-line">
+          <span>Importe: <b data-role="sImp">${money(c.importe)}</b></span>
+          <span>Cobrado: <b data-role="sCob">${money(c.cobrado)}</b></span>
+          <span>A cobrar: <b data-role="sPend">${money(c.aCobrar)}</b></span>
+          <span>Gastos: <b data-role="sGas">${money(c.gastos)}</b></span>
+          <span>Margen: <b data-role="sMar" class="${c.margen < 0 ? 'debt' : 'ok'}">${money(c.margen)}</b></span>
+        </div>
+
+        <div class="field-group-title">Notas</div>
+        <div class="field"><textarea rows="2" data-sf="notas" placeholder="Opcional">${escapeHtml(s.notas)}</textarea></div>
+        <div class="card-footer-actions">
+          <button type="button" class="btn btn-small btn-danger" data-del-ses="${escapeAttr(s.id)}">Eliminar sesión</button>
+        </div>
+      </div>
+    </details>`;
+}
+
+function renderSesiones() {
+  const meses = mesesOpciones(state.sesiones.map(s => s.fecha), ui.sesMes === 'todos' ? '' : ui.sesMes);
+  const lista = sesionesFiltradas();
+  const tot = lista.reduce((a, s) => {
+    const c = sesionCalc(s);
+    a.importe += c.importe; a.cobrado += c.cobrado; a.aCobrar += c.aCobrar; a.gastos += c.gastos; a.margen += c.margen;
+    return a;
+  }, { importe: 0, cobrado: 0, aCobrar: 0, gastos: 0, margen: 0 });
+
+  return `
+    <div class="filter-row">
+      <div class="field"><label>Tipo</label>
+        <select id="sesFiltroTipo">
+          <option value="todos">Todos</option>
+          ${state.sesionTipos.map(t => `<option value="${escapeAttr(t)}" ${ui.sesTipo === t ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field"><label>Mes</label>
+        <select id="sesFiltroMes">
+          <option value="todos">Todos</option>
+          ${meses.map(m => `<option value="${m}" ${ui.sesMes === m ? 'selected' : ''}>${mesLabel(m)}</option>`).join('')}
+        </select>
+      </div>
+      <button class="btn btn-primary" id="btnNuevaSesion">+ Nueva sesión</button>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><span>Ingresos</span><b>${money(tot.importe)}</b></div>
+      <div class="kpi"><span>Cobrado</span><b class="ok">${money(tot.cobrado)}</b></div>
+      <div class="kpi"><span>A cobrar</span><b class="debt">${money(tot.aCobrar)}</b></div>
+      <div class="kpi"><span>Gastos</span><b>${money(tot.gastos)}</b></div>
+      <div class="kpi"><span>Margen</span><b class="${tot.margen < 0 ? 'debt' : 'ok'}">${money(tot.margen)}</b></div>
+    </div>
+    <div class="card-list" id="sesList">
+      ${lista.length ? lista.map(renderSesionCard).join('') : '<div class="section-hint">No hay sesiones en este filtro. Tocá “+ Nueva sesión” para registrar una.</div>'}
+    </div>`;
+}
+
+function attachSesionesHandlers() {
+  document.getElementById('sesFiltroTipo').addEventListener('change', e => { ui.sesTipo = e.target.value; render(); });
+  document.getElementById('sesFiltroMes').addEventListener('change', e => { ui.sesMes = e.target.value; render(); });
+  document.getElementById('btnNuevaSesion').addEventListener('click', () => {
+    const s = migrateSesion({ id: uid('ses'), fecha: todayStr(), tipo: state.sesionTipos[0] || '' });
+    state.sesiones.push(s);
+    ui.sesionAbierta = s.id;
+    ui.sesTipo = 'todos';
+    if (ui.sesMes !== 'todos') ui.sesMes = s.fecha.slice(0, 7);
+    saveState(); render();
+    const el = document.querySelector(`.alumno-card[data-sid="${s.id}"]`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  const list = document.getElementById('sesList');
+  list.addEventListener('toggle', e => {
+    const d = e.target;
+    if (d && d.matches && d.matches('details[data-sid]')) {
+      if (d.open) ui.sesionAbierta = d.dataset.sid;
+      else if (ui.sesionAbierta === d.dataset.sid) ui.sesionAbierta = null;
+    }
+  }, true);
+  list.addEventListener('input', onSesionField);
+  list.addEventListener('change', onSesionField);
+  list.addEventListener('click', onSesionClick);
+}
+
+function sesionDeEl(el) {
+  const card = el.closest('.alumno-card[data-sid]');
+  if (!card) return null;
+  const s = state.sesiones.find(x => x.id === card.dataset.sid);
+  return s ? { card, s } : null;
+}
+
+function onSesionField(e) {
+  const t = e.target;
+  const field = t.dataset && t.dataset.sf;
+  if (!field) return;
+  const ctx = sesionDeEl(t);
+  if (!ctx) return;
+  const { card, s } = ctx;
+  if (field === 'tipo' && t.value === '__nuevo__') {
+    const n = (prompt('Nombre del nuevo tipo de sesión:') || '').trim();
+    if (!n) { t.value = s.tipo; return; }
+    if (!state.sesionTipos.includes(n)) state.sesionTipos.push(n);
+    s.tipo = n; saveState(); render(); return;
+  }
+  if (field === 'importe' || field === 'montoAbonado') s[field] = Number(t.value) || 0;
+  else s[field] = t.value;
+  if (field === 'estadoPago') card.querySelector('[data-role="sAbonadoField"]').hidden = t.value !== 'sena';
+  if (e.type === 'input') saveStateDebounced(); else saveState();
+  actualizarSesionCard(card, s);
+}
+
+function actualizarSesionCard(card, s) {
+  const c = sesionCalc(s), st = sesionEstado(s);
+  const q = r => card.querySelector(`[data-role="${r}"]`);
+  q('sTitle').textContent = [s.tipo || 'Sesión', s.cliente].filter(Boolean).join(' · ');
+  card.querySelector('.alumno-sub').textContent = fmtFecha(s.fecha);
+  q('sPill').textContent = st.label; q('sPill').className = 'pill ' + st.cls;
+  q('sImporte').textContent = c.importe > 0 ? money(c.importe) : '—';
+  q('sImp').textContent = money(c.importe); q('sCob').textContent = money(c.cobrado);
+  q('sPend').textContent = money(c.aCobrar); q('sGas').textContent = money(c.gastos);
+  q('sMar').textContent = money(c.margen); q('sMar').className = c.margen < 0 ? 'debt' : 'ok';
+}
+
+function onSesionClick(e) {
+  const t = e.target;
+  const sel = t.closest && t.closest('[data-sg="categoria"]');
+  const ctx = sesionDeEl(t);
+  if (!ctx) return;
+  const { card, s } = ctx;
+  const add = t.closest('[data-add-sg]');
+  const delSg = t.closest('[data-del-sg]');
+  const delSes = t.closest('[data-del-ses]');
+  if (add) {
+    const desc = card.querySelector('[data-sg="descripcion"]').value.trim();
+    const monto = Number(card.querySelector('[data-sg="monto"]').value) || 0;
+    let cat = card.querySelector('[data-sg="categoria"]').value;
+    if (monto <= 0) { alert('Ingresá un monto mayor a 0.'); return; }
+    if (cat === '__nueva__') {
+      const n = (prompt('Nombre de la nueva categoría:') || '').trim();
+      if (!n) return;
+      cat = n;
+      if (!state.sesionGastoCategorias.includes(n)) state.sesionGastoCategorias.push(n);
+    }
+    s.gastos.push({ id: uid('sg'), descripcion: desc, categoria: cat, monto });
+    ui.sesionAbierta = s.id;
+    saveState(); render();
+  } else if (delSg) {
+    s.gastos = s.gastos.filter(g => g.id !== delSg.dataset.delSg);
+    ui.sesionAbierta = s.id;
+    saveState(); render();
+  } else if (delSes) {
+    if (!confirm('¿Eliminar esta sesión con sus gastos? No se puede deshacer.')) return;
+    state.sesiones = state.sesiones.filter(x => x.id !== s.id);
+    if (ui.sesionAbierta === s.id) ui.sesionAbierta = null;
+    saveState(); render();
+  }
+}
+
+/* ===================== Estadísticas generales ===================== */
+
+function totalesGenerales() {
+  const porJardin = state.jardines.map(j => {
+    const t = jardinTotales(j);
+    return Object.assign({ id: j.id, nombre: j.nombre, gastos: sumBy(j.gastos, g => g.monto) }, t);
+  });
+  const jard = {
+    total: sumBy(porJardin, x => x.total),
+    cobrado: sumBy(porJardin, x => x.cobrado),
+    aCobrar: sumBy(porJardin, x => x.aCobrar),
+    gastos: sumBy(porJardin, x => x.gastos),
+  };
+  const porSesion = {};
+  const ses = { n: state.sesiones.length, importe: 0, cobrado: 0, aCobrar: 0, gastos: 0, margen: 0 };
+  state.sesiones.forEach(s => {
+    const c = sesionCalc(s);
+    ses.importe += c.importe; ses.cobrado += c.cobrado; ses.aCobrar += c.aCobrar; ses.gastos += c.gastos; ses.margen += c.margen;
+    const k = s.tipo || 'Sin tipo';
+    const e = porSesion[k] || (porSesion[k] = { tipo: k, n: 0, importe: 0, cobrado: 0, aCobrar: 0, gastos: 0, margen: 0 });
+    e.n++; e.importe += c.importe; e.cobrado += c.cobrado; e.aCobrar += c.aCobrar; e.gastos += c.gastos; e.margen += c.margen;
+  });
+  const pers = sumBy(state.gastosPersonales, g => g.monto);
+  const negocio = {
+    ingresos: jard.total + ses.importe,
+    cobrado: jard.cobrado + ses.cobrado,
+    aCobrar: jard.aCobrar + ses.aCobrar,
+    egresos: jard.gastos + ses.gastos,
+  };
+  negocio.balance = negocio.cobrado - negocio.egresos;
+  negocio.balanceProyectado = negocio.ingresos - negocio.egresos;
+  return { jardines: jard, porJardin, sesiones: ses, porSesion: Object.values(porSesion), personales: pers, negocio, resultadoFinal: negocio.balance - pers };
+}
+
+function filasPorPeriodo(periodo) {
+  const info = periodInfoFn(periodo);
+  const m = new Map();
+  const get = fecha => {
+    const i = info(fecha);
+    if (!m.has(i.key)) m.set(i.key, { key: i.key, label: i.label, ingresos: 0, cobrado: 0, egresos: 0, personales: 0 });
+    return m.get(i.key);
+  };
+  state.jardines.forEach(j => {
+    j.alumnos.forEach(a => {
+      const t = calcTotal(a);
+      if (t > 0) { const r = get(a.fecha); r.ingresos += t; r.cobrado += calcCobrado(a); }
+    });
+    j.gastos.forEach(g => { get(g.fecha).egresos += Number(g.monto) || 0; });
+  });
+  state.sesiones.forEach(s => {
+    const c = sesionCalc(s), r = get(s.fecha);
+    r.ingresos += c.importe; r.cobrado += c.cobrado; r.egresos += c.gastos;
+  });
+  state.gastosPersonales.forEach(g => { get(g.fecha).personales += Number(g.monto) || 0; });
+  return Array.from(m.values()).sort((a, b) => a.key.localeCompare(b.key));
+}
+
+function renderStatsGenerales() {
+  const t = totalesGenerales();
+  const n = t.negocio;
+  const filasIng = t.porJardin.map(x => ({ nombre: 'Jardín: ' + x.nombre, cant: x.pedidos, total: x.total, cobrado: x.cobrado, aCobrar: x.aCobrar }))
+    .concat(t.porSesion.map(x => ({ nombre: 'Sesiones: ' + x.tipo, cant: x.n, total: x.importe, cobrado: x.cobrado, aCobrar: x.aCobrar })));
+
+  const egresosOrigen = t.porJardin.map(x => [`Jardín: ${x.nombre}`, x.gastos, 0]).concat(t.porSesion.map(x => [`Sesiones: ${x.tipo}`, x.gastos, 0])).filter(r => r[1] > 0);
+  const catMap = new Map();
+  state.jardines.forEach(j => j.gastos.forEach(g => catMap.set(g.categoria, (catMap.get(g.categoria) || 0) + (Number(g.monto) || 0))));
+  state.sesiones.forEach(s => s.gastos.forEach(g => catMap.set(g.categoria, (catMap.get(g.categoria) || 0) + (Number(g.monto) || 0))));
+  const egresosCat = Array.from(catMap.entries()).sort((a, b) => b[1] - a[1]);
+
+  const per = filasPorPeriodo(ui.statsPeriodo);
+  const perTot = per.reduce((a, r) => { a.i += r.ingresos; a.c += r.cobrado; a.e += r.egresos; a.p += r.personales; return a; }, { i: 0, c: 0, e: 0, p: 0 });
+  const cls = v => v < 0 ? 'debt' : 'ok';
+
+  return `
+    <div class="stats-section">
+      <h2>Negocio (jardines + sesiones)</h2>
+      <div class="kpi-row">
+        <div class="kpi"><span>Ingresos totales</span><b>${money(n.ingresos)}</b></div>
+        <div class="kpi"><span>Cobrado</span><b class="ok">${money(n.cobrado)}</b></div>
+        <div class="kpi"><span>A cobrar</span><b class="debt">${money(n.aCobrar)}</b></div>
+        <div class="kpi"><span>Egresos</span><b>${money(n.egresos)}</b></div>
+        <div class="kpi"><span>Balance (cobrado − egresos)</span><b class="${cls(n.balance)}">${money(n.balance)}</b></div>
+        <div class="kpi"><span>Balance proyectado</span><b class="${cls(n.balanceProyectado)}">${money(n.balanceProyectado)}</b></div>
+      </div>
+      <p class="muted">El balance proyectado suma también lo que todavía falta cobrar.</p>
+    </div>
+
+    <div class="stats-section">
+      <h2>Ingresos por origen</h2>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Origen</th><th class="num">Cant.</th><th class="num">Total</th><th class="num">Cobrado</th><th class="num">A cobrar</th></tr></thead>
+        <tbody>
+          ${filasIng.length ? filasIng.map(r => `<tr><td>${escapeHtml(r.nombre)}</td><td class="num">${r.cant}</td><td class="num">${money(r.total)}</td><td class="num">${money(r.cobrado)}</td><td class="num">${money(r.aCobrar)}</td></tr>`).join('') : '<tr><td colspan="5" class="muted">Sin datos.</td></tr>'}
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="num">${sumBy(filasIng, r => r.cant)}</td><td class="num">${money(n.ingresos)}</td><td class="num">${money(n.cobrado)}</td><td class="num">${money(n.aCobrar)}</td></tr></tfoot>
+      </table></div>
+    </div>
+
+    <div class="stats-section">
+      <h2>Egresos del negocio</h2>
+      <h3 class="sub-h">Por origen</h3>
+      ${egresosOrigen.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Origen</th><th class="num">Total</th></tr></thead><tbody>
+        ${egresosOrigen.map(r => `<tr><td>${escapeHtml(r[0])}</td><td class="num">${money(r[1])}</td></tr>`).join('')}
+      </tbody><tfoot><tr><td>Total</td><td class="num">${money(n.egresos)}</td></tr></tfoot></table></div>` : '<div class="muted">Sin gastos cargados.</div>'}
+      <h3 class="sub-h">Por categoría</h3>
+      ${egresosCat.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Categoría</th><th class="num">Total</th></tr></thead><tbody>
+        ${egresosCat.map(r => `<tr><td>${escapeHtml(r[0])}</td><td class="num">${money(r[1])}</td></tr>`).join('')}
+      </tbody></table></div>` : '<div class="muted">Sin gastos cargados.</div>'}
+    </div>
+
+    <div class="stats-section">
+      <h2>Margen de las sesiones por tipo</h2>
+      ${t.porSesion.length ? `<div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Tipo</th><th class="num">Cant.</th><th class="num">Ingresos</th><th class="num">Gastos</th><th class="num">Margen</th></tr></thead>
+        <tbody>${t.porSesion.map(r => `<tr><td>${escapeHtml(r.tipo)}</td><td class="num">${r.n}</td><td class="num">${money(r.importe)}</td><td class="num">${money(r.gastos)}</td><td class="num">${money(r.margen)}</td></tr>`).join('')}</tbody>
+        <tfoot><tr><td>Total</td><td class="num">${t.sesiones.n}</td><td class="num">${money(t.sesiones.importe)}</td><td class="num">${money(t.sesiones.gastos)}</td><td class="num">${money(t.sesiones.margen)}</td></tr></tfoot>
+      </table></div>` : '<div class="muted">Todavía no registraste sesiones.</div>'}
+    </div>
+
+    <div class="stats-section">
+      <h2>Gastos personales <span class="muted">(separados del negocio)</span></h2>
+      <div class="kpi-row"><div class="kpi"><span>Total gastos personales</span><b>${money(t.personales)}</b></div></div>
+      <h3 class="sub-h">Por categoría</h3>
+      ${simpleTable(groupSum(state.gastosPersonales, g => g.categoria, g => g.monto), 'Categoría', 'Total')}
+      <h3 class="sub-h">Por medio de pago</h3>
+      ${simpleTable(groupSum(state.gastosPersonales, g => g.medio, g => g.monto), 'Medio', 'Total')}
+      <div class="kpi-row" style="margin-top:14px">
+        <div class="kpi"><span>Balance del negocio</span><b class="${cls(n.balance)}">${money(n.balance)}</b></div>
+        <div class="kpi"><span>− Gastos personales</span><b>${money(t.personales)}</b></div>
+        <div class="kpi"><span>Resultado final</span><b class="${cls(t.resultadoFinal)}">${money(t.resultadoFinal)}</b></div>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <h2>Por período</h2>
+      <div class="periodo-toggle">
+        ${[['semana', 'Semana'], ['quincena', 'Quincena'], ['mes', 'Mes']].map(([k, l]) => `<button class="btn btn-small ${ui.statsPeriodo === k ? 'btn-primary' : ''}" data-sp="${k}">${l}</button>`).join('')}
+      </div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Período</th><th class="num">Ingresos</th><th class="num">Cobrado</th><th class="num">Egresos</th><th class="num">Balance</th><th class="num">Gastos pers.</th></tr></thead>
+        <tbody>
+          ${per.length ? per.map(r => `<tr><td>${escapeHtml(r.label)}</td><td class="num">${money(r.ingresos)}</td><td class="num">${money(r.cobrado)}</td><td class="num">${money(r.egresos)}</td><td class="num">${money(r.cobrado - r.egresos)}</td><td class="num">${money(r.personales)}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">Sin datos.</td></tr>'}
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="num">${money(perTot.i)}</td><td class="num">${money(perTot.c)}</td><td class="num">${money(perTot.e)}</td><td class="num">${money(perTot.c - perTot.e)}</td><td class="num">${money(perTot.p)}</td></tr></tfoot>
+      </table></div>
+      <p class="muted">Los pedidos de jardín cuentan en la fecha del pedido; los que no tienen fecha aparecen en “Sin fecha”.</p>
+    </div>`;
+}
+
+function attachStatsGeneralesHandlers() {
+  document.querySelectorAll('[data-sp]').forEach(b => b.addEventListener('click', () => { ui.statsPeriodo = b.dataset.sp; render(); }));
+}
+
+/* ===================== Importar alumnos desde Excel / CSV ===================== */
+
+// ---- Lector de .xlsx sin librerías (zip + XML) ----
+
+async function inflateRaw(bytes) {
+  if (typeof DecompressionStream === 'undefined') {
+    throw new Error('Este navegador no puede abrir Excel comprimido. Guardá el archivo como CSV desde Excel e importalo de nuevo.');
+  }
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+  return new Uint8Array(await new Response(stream).arrayBuffer());
+}
+
+async function unzipXlsx(buf) {
+  const u8 = new Uint8Array(buf);
+  const dv = new DataView(buf);
+  let eocd = -1;
+  for (let i = u8.length - 22; i >= Math.max(0, u8.length - 65557); i--) {
+    if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+  }
+  if (eocd < 0) throw new Error('El archivo no parece ser un Excel (.xlsx) válido.');
+  const count = dv.getUint16(eocd + 10, true);
+  let p = dv.getUint32(eocd + 16, true);
+  const dec = new TextDecoder();
+  const files = {};
+  for (let n = 0; n < count; n++) {
+    if (dv.getUint32(p, true) !== 0x02014b50) break;
+    const method = dv.getUint16(p + 10, true);
+    const csize = dv.getUint32(p + 20, true);
+    const nlen = dv.getUint16(p + 28, true), elen = dv.getUint16(p + 30, true), clen = dv.getUint16(p + 32, true);
+    const lho = dv.getUint32(p + 42, true);
+    const name = dec.decode(u8.subarray(p + 46, p + 46 + nlen));
+    const start = lho + 30 + dv.getUint16(lho + 26, true) + dv.getUint16(lho + 28, true);
+    files[name] = { method, data: u8.subarray(start, start + csize) };
+    p += 46 + nlen + elen + clen;
+  }
+  return files;
+}
+
+async function zipText(files, name) {
+  const f = files[name];
+  if (!f) return null;
+  let bytes;
+  if (f.method === 0) bytes = f.data;
+  else if (f.method === 8) bytes = await inflateRaw(f.data);
+  else throw new Error('El Excel usa una compresión que no se puede leer.');
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+function xmlDoc(text) {
+  const d = new DOMParser().parseFromString(text, 'application/xml');
+  if (d.getElementsByTagName('parsererror').length) throw new Error('No pude leer el contenido del Excel.');
+  return d;
+}
+
+function nsAll(node, tag) { return Array.from(node.getElementsByTagNameNS('*', tag)); }
+
+function colIndexFromRef(ref) {
+  const m = /^([A-Z]+)/.exec(ref || '');
+  if (!m) return -1;
+  let n = 0;
+  for (const ch of m[1]) n = n * 26 + (ch.charCodeAt(0) - 64);
+  return n - 1;
+}
+
+function numToText(raw) {
+  if (raw === '' || raw == null) return '';
+  const n = Number(raw);
+  if (!isFinite(n)) return String(raw);
+  return Number.isInteger(n) ? String(n) : String(raw).trim();
+}
+
+// Devuelve las filas de la primera hoja como arrays de texto.
+async function readXlsxRows(buf) {
+  const files = await unzipXlsx(buf);
+  const wbText = await zipText(files, 'xl/workbook.xml');
+  if (!wbText) throw new Error('El archivo no tiene el formato de Excel esperado.');
+  const sheet = nsAll(xmlDoc(wbText), 'sheet')[0];
+  if (!sheet) throw new Error('El Excel no tiene hojas.');
+  const rid = sheet.getAttribute('r:id') || sheet.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships', 'id');
+  let target = 'worksheets/sheet1.xml';
+  const relsText = await zipText(files, 'xl/_rels/workbook.xml.rels');
+  if (relsText && rid) {
+    const rel = nsAll(xmlDoc(relsText), 'Relationship').find(r => r.getAttribute('Id') === rid);
+    if (rel) target = rel.getAttribute('Target');
+  }
+  const path = target.startsWith('/') ? target.slice(1) : 'xl/' + target;
+
+  const shared = [];
+  const ssText = await zipText(files, 'xl/sharedStrings.xml');
+  if (ssText) {
+    nsAll(xmlDoc(ssText), 'si').forEach(si => {
+      let t = '';
+      Array.from(si.childNodes).forEach(ch => {
+        if (ch.localName === 't') t += ch.textContent;
+        else if (ch.localName === 'r') nsAll(ch, 't').forEach(x => { t += x.textContent; });
+      });
+      shared.push(t);
+    });
+  }
+
+  const sheetText = await zipText(files, path);
+  if (!sheetText) throw new Error('No encontré la hoja de datos dentro del Excel.');
+  const rows = [];
+  nsAll(xmlDoc(sheetText), 'row').forEach(rowEl => {
+    const r = parseInt(rowEl.getAttribute('r'), 10);
+    const rowIdx = isNaN(r) ? rows.length : r - 1;
+    const arr = rows[rowIdx] || (rows[rowIdx] = []);
+    let colPos = 0;
+    Array.from(rowEl.childNodes).filter(n => n.localName === 'c').forEach(c => {
+      const ci = c.getAttribute('r') ? colIndexFromRef(c.getAttribute('r')) : colPos;
+      colPos = ci + 1;
+      const t = c.getAttribute('t');
+      let val = '';
+      if (t === 'inlineStr') {
+        val = nsAll(c, 't').map(x => x.textContent).join('');
+      } else {
+        const v = Array.from(c.childNodes).find(n => n.localName === 'v');
+        const raw = v ? v.textContent : '';
+        if (t === 's') val = shared[parseInt(raw, 10)] != null ? shared[parseInt(raw, 10)] : '';
+        else if (t === 'b') val = raw === '1' ? 'Sí' : 'No';
+        else if (t === 'str' || t === 'e') val = raw;
+        else val = numToText(raw);
+      }
+      arr[ci] = val;
+    });
+  });
+  return Array.from(rows, r => Array.from(r || [], x => (x == null ? '' : x)));
+}
+
+function parseCsv(text) {
+  text = text.replace(/^﻿/, '');
+  const firstLine = text.split(/\r?\n/)[0] || '';
+  const delim = [';', '\t', ','].map(d => [d, firstLine.split(d).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const rows = [];
+  let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; }
+      else cell += ch;
+    } else if (ch === '"') q = true;
+    else if (ch === delim) { row.push(cell); cell = ''; }
+    else if (ch === '\n' || ch === '\r') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell); cell = ''; rows.push(row); row = [];
+    } else cell += ch;
+  }
+  if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+  return rows;
+}
+
+async function leerFilasDeBuffer(buf) {
+  const u8 = new Uint8Array(buf);
+  if (u8.length > 3 && u8[0] === 0x50 && u8[1] === 0x4B) return readXlsxRows(buf);
+  if (u8.length > 4 && u8[0] === 0xD0 && u8[1] === 0xCF && u8[2] === 0x11 && u8[3] === 0xE0) {
+    throw new Error('Es un Excel viejo (.xls). Abrilo en Excel y guardalo como "Libro de Excel (.xlsx)", después importalo de nuevo.');
+  }
+  let text = new TextDecoder('utf-8').decode(buf);
+  if (text.includes('�')) text = new TextDecoder('windows-1252').decode(buf);
+  return parseCsv(text);
+}
+
+// ---- Interpretación del listado de alumnos ----
+
+const HEADER_ALIASES = {
+  turno: ['turno'],
+  sala: ['sala', 'salon', 'salita', 'curso', 'grado'],
+  apellido: ['apellido', 'apellidos'],
+  nombre: ['nombre', 'nombres'],
+  padre: ['padre', 'nombredelpadre', 'papa'],
+  madre: ['madre', 'nombredelamadre', 'mama'],
+  telefonoPadre: ['telefonopadre', 'telpadre', 'celularpadre', 'celpadre', 'telefonodelpadre', 'telefonopapa', 'telpapa'],
+  telefonoMadre: ['telefonomadre', 'telmadre', 'celularmadre', 'celmadre', 'telefonodelamadre', 'telefonomama', 'telmama'],
+  telefono: ['telefono', 'tel', 'celular', 'cel', 'whatsapp'],
+};
+
+function headerKey(s) {
+  return normalize(String(s == null ? '' : s)).replace(/[^a-z0-9]/g, '');
+}
+
+function esMayusculas(s) { return s === s.toUpperCase() && s !== s.toLowerCase(); }
+
+function titleCase(s) {
+  return s.toLowerCase().replace(/(^|[\s\-´'’.])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+}
+
+// Saca marcas como "(3)" (edad), guiones y comas sueltas, y pasa MAYÚSCULAS a formato normal.
+function cleanName(s) {
+  s = String(s == null ? '' : s)
+    .replace(/\(\s*\d+\s*\)/g, ' ')
+    .replace(/[–—]/g, '-')
+    .replace(/^[\s\-,]+|[\s\-,]+$/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return esMayusculas(s) ? titleCase(s) : s;
+}
+
+function cleanSala(s) {
+  s = String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
+  return esMayusculas(s) ? titleCase(s) : s;
+}
+
+function normTurno(t) {
+  const n = normalize(String(t == null ? '' : t));
+  if (!n) return '';
+  if (n.startsWith('m')) return 'Mañana';
+  if (n.startsWith('t')) return 'Tarde';
+  return titleCase(String(t).trim());
+}
+
+function parseAlumnosRows(rows) {
+  let h = -1;
+  for (let i = 0; i < Math.min(rows.length, 15); i++) {
+    const keys = (rows[i] || []).map(headerKey);
+    if (keys.some(k => HEADER_ALIASES.apellido.includes(k) || HEADER_ALIASES.nombre.includes(k))) { h = i; break; }
+  }
+  if (h < 0) throw new Error('No encontré los títulos de las columnas. La primera fila tiene que decir: Turno, Sala, Apellido, Nombre.');
+
+  const map = {};
+  let lastContact = null;
+  (rows[h] || []).forEach((cell, idx) => {
+    const k = headerKey(cell);
+    if (!k) return;
+    let f = null;
+    for (const [field, aliases] of Object.entries(HEADER_ALIASES)) { if (aliases.includes(k)) { f = field; break; } }
+    if (!f) return;
+    if (f === 'padre' || f === 'madre') lastContact = f;
+    if (f === 'telefono') {
+      if (lastContact === 'madre' && map.telefonoMadre === undefined) f = 'telefonoMadre';
+      else if (map.telefonoPadre === undefined) f = 'telefonoPadre';
+      else f = 'telefonoMadre';
+    }
+    if (map[f] === undefined) map[f] = idx;
+  });
+  if (map.apellido === undefined && map.nombre === undefined) throw new Error('No encontré las columnas Apellido y Nombre.');
+  if (map.sala === undefined) throw new Error('No encontré la columna "Sala". Es obligatoria: cada alumno tiene que decir a qué sala va.');
+
+  const alumnos = [];
+  let ignoradas = 0, sinTurno = 0;
+  for (let i = h + 1; i < rows.length; i++) {
+    const r = rows[i] || [];
+    if (!r.some(c => String(c == null ? '' : c).trim() !== '')) continue;
+    const get = f => (map[f] === undefined ? '' : String(r[map[f]] == null ? '' : r[map[f]]).trim());
+    const apellido = cleanName(get('apellido')), nombre = cleanName(get('nombre'));
+    const sala = cleanSala(get('sala'));
+    if ((!apellido && !nombre) || !sala) { ignoradas++; continue; }
+    let turno = normTurno(get('turno'));
+    if (!turno) { turno = 'Mañana'; sinTurno++; }
+    alumnos.push({
+      turno, sala, apellido, nombre,
+      padre: cleanName(get('padre')), madre: cleanName(get('madre')),
+      telefonoPadre: get('telefonoPadre'), telefonoMadre: get('telefonoMadre'),
+    });
+  }
+  if (!alumnos.length) throw new Error('No encontré alumnos para importar. Revisá que tengan Sala, Apellido y Nombre.');
+  const salas = [];
+  alumnos.forEach(a => { if (!salas.some(s => s.turno === a.turno && s.sala === a.sala)) salas.push({ turno: a.turno, sala: a.sala }); });
+  return { alumnos, ignoradas, sinTurno, salas, sinColumnaTurno: map.turno === undefined };
+}
+
+async function leerAlumnosDeBuffer(buf) {
+  return parseAlumnosRows(await leerFilasDeBuffer(buf));
+}
+
+async function leerAlumnosDeArchivo(file) {
+  return leerAlumnosDeBuffer(await file.arrayBuffer());
+}
+
+function resumenImport(p, destino) {
+  const porTurno = {};
+  p.salas.forEach(s => { porTurno[s.turno] = (porTurno[s.turno] || 0) + 1; });
+  const turnos = Object.entries(porTurno).map(([t, n]) => `${t}: ${n} ${n === 1 ? 'sala' : 'salas'}`).join(' · ');
+  let msg = `Se encontraron ${p.alumnos.length} alumnos en ${p.salas.length} ${p.salas.length === 1 ? 'sala' : 'salas'} (${turnos}).`;
+  const nombres = p.salas.slice(0, 12).map(s => s.sala);
+  msg += `\n\nSalas: ${nombres.join(', ')}${p.salas.length > 12 ? '…' : ''}`;
+  if (p.sinColumnaTurno) msg += `\n\nEl archivo no tiene columna "Turno": todos van al turno Mañana.`;
+  else if (p.sinTurno) msg += `\n\n${p.sinTurno} alumnos no tenían turno y van al turno Mañana.`;
+  if (p.ignoradas) msg += `\n\nSe ignoraron ${p.ignoradas} filas por falta de datos (sala, apellido o nombre).`;
+  msg += `\n\n¿Importar a "${destino}"?`;
+  return msg;
+}
+
+function keyAlumno(turno, sala, apellido, nombre) {
+  return [turno, sala, apellido, nombre].map(x => normalize(String(x || '')).replace(/\s+/g, ' ').trim()).join('|');
+}
+
+// Suma los alumnos al jardín: crea las salas que falten y omite los que ya existen.
+function aplicarImportAlumnos(j, parsed) {
+  const existentes = new Set(j.alumnos.map(a => keyAlumno(a.turno, a.sala, a.apellido, a.nombre)));
+  let agregados = 0, duplicados = 0, salasNuevas = 0;
+  parsed.alumnos.forEach(a => {
+    let sala = j.salas.find(s => s.turno === a.turno && normalize(s.nombre) === normalize(a.sala));
+    if (!sala) { sala = { turno: a.turno, nombre: a.sala }; j.salas.push(sala); salasNuevas++; }
+    const k = keyAlumno(a.turno, sala.nombre, a.apellido, a.nombre);
+    if (existentes.has(k)) { duplicados++; return; }
+    existentes.add(k);
+    j.alumnos.push(Object.assign(
+      { id: uid('al'), turno: a.turno, sala: sala.nombre, apellido: a.apellido, nombre: a.nombre },
+      defaultAlumnoFields(),
+      { padre: a.padre, madre: a.madre, telefonoPadre: a.telefonoPadre, telefonoMadre: a.telefonoMadre }
+    ));
+    agregados++;
+  });
+  return { agregados, duplicados, salasNuevas };
+}
+
+function mensajeResultadoImport(r) {
+  let msg = `Se agregaron ${r.agregados} alumnos.`;
+  if (r.salasNuevas) msg += ` Salas nuevas: ${r.salasNuevas}.`;
+  if (r.duplicados) msg += ` ${r.duplicados} ya existían y se omitieron.`;
+  return msg;
+}
+
+// Importar a un jardín que ya existe (desde la pestaña Fichas).
+async function importarAlumnosEnJardin(file) {
+  const j = cur();
+  let parsed;
+  try { parsed = await leerAlumnosDeArchivo(file); }
+  catch (e) { alert('No pude leer el archivo: ' + e.message); return; }
+  if (!confirm(resumenImport(parsed, j.nombre))) return;
+  const r = aplicarImportAlumnos(j, parsed);
+  saveState();
+  render();
+  alert(mensajeResultadoImport(r));
+}
+
+/* ===================== Modelo de Excel para completar ===================== */
+
+const MODELO_HEADERS = ['Turno', 'Sala', 'Apellido', 'Nombre', 'Padre', 'Teléfono padre', 'Madre', 'Teléfono madre'];
+const MODELO_WIDTHS = [10, 24, 22, 18, 18, 17, 18, 17];
+
+function genericSheetXml(o) {
+  const rowsXml = o.rows.map(row => {
+    const cells = row.cells.map(c => xlsStr(xlsCol(c.c) + row.r, c.v, c.s || 0)).join('');
+    return `<row r="${row.r}"${row.ht ? ` ht="${row.ht}" customHeight="1"` : ''}>${cells}</row>`;
+  }).join('');
+  const lastRow = o.rows.length ? o.rows[o.rows.length - 1].r : 1;
+  const lastCol = xlsCol(Math.max(0, o.cols.length - 1));
+  const pane = o.freezeRow ? `<pane ySplit="${o.freezeRow}" topLeftCell="A${o.freezeRow + 1}" activePane="bottomLeft" state="frozen"/>` : '';
+  const cols = o.cols.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('');
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><dimension ref="A1:${lastCol}${lastRow}"/><sheetViews><sheetView workbookViewId="0">${pane}</sheetView></sheetViews><sheetFormatPr defaultRowHeight="16"/><cols>${cols}</cols><sheetData>${rowsXml}</sheetData>${o.validations || ''}<pageMargins left="0.5" right="0.5" top="0.6" bottom="0.6" header="0.3" footer="0.3"/></worksheet>`;
+}
+
+function buildGenericXlsxBlob(sheets) {
+  const files = [];
+  files.push({ name: '[Content_Types].xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheets.map((_, i) => `<Override PartName="/xl/worksheets/sheet${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')}</Types>` });
+  files.push({ name: '_rels/.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>` });
+  files.push({ name: 'xl/workbook.xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="0"/></bookViews><sheets>${sheets.map((sh, i) => `<sheet name="${xmlEsc(sh.name)}" sheetId="${i + 1}" r:id="rId${i + 1}"/>`).join('')}</sheets></workbook>` });
+  files.push({ name: 'xl/_rels/workbook.xml.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((_, i) => `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i + 1}.xml"/>`).join('')}<Relationship Id="rId${sheets.length + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>` });
+  files.push({ name: 'xl/styles.xml', data: PLANILLA_STYLES_XML });
+  sheets.forEach((sh, i) => files.push({ name: `xl/worksheets/sheet${i + 1}.xml`, data: sh.xml }));
+  return buildZipBlob(files, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+}
+
+function buildModeloAlumnosBlob() {
+  const FILAS = 300;
+  const rows = [{ r: 1, ht: 30, cells: MODELO_HEADERS.map((h, i) => ({ c: i, v: h, s: 1 })) }];
+  for (let r = 2; r <= FILAS + 1; r++) {
+    rows.push({ r, ht: 22, cells: MODELO_HEADERS.map((_, i) => ({ c: i, v: '', s: (i === 5 || i === 7) ? 14 : 2 })) });
+  }
+  const alumnos = genericSheetXml({
+    cols: MODELO_WIDTHS, rows, freezeRow: 1,
+    validations: `<dataValidations count="1"><dataValidation type="list" allowBlank="1" showErrorMessage="1" errorTitle="Turno" error="Elegí Mañana o Tarde." sqref="A2:A${FILAS + 1}"><formula1>"Mañana,Tarde"</formula1></dataValidation></dataValidations>`,
+  });
+
+  const t = (r, text, s, ht) => ({ r, ht, cells: [{ c: 0, v: text, s }] });
+  const instr = [
+    t(1, 'Modelo para importar alumnos', 13, 32),
+    t(3, '1. Completá la hoja "Alumnos": una fila por alumno, empezando en la fila 2.', 15),
+    t(4, '2. Son obligatorios Turno, Sala, Apellido y Nombre. Padre, Madre y los teléfonos son opcionales.', 15),
+    t(5, '3. Turno: Mañana o Tarde (hay una lista desplegable en la columna).', 15),
+    t(6, '4. Sala: escribí el nombre completo y siempre igual para todos los alumnos de esa sala. Por ejemplo: Multiedad A 2 Y 3.', 15),
+    t(7, '5. Si la sala todavía no existe en el jardín, se crea sola al importar.', 15),
+    t(8, '6. No cambies los títulos de las columnas. Esta hoja de instrucciones no se importa.', 15),
+    t(9, '7. Guardá el archivo y en la app elegí Jardines → Nuevo jardín (o, dentro de un jardín, "Importar alumnos desde Excel").', 15),
+    t(11, 'Ejemplo de cómo se completa una fila (no se importa):', 15),
+    { r: 12, ht: 26, cells: MODELO_HEADERS.map((h, i) => ({ c: i, v: h, s: 1 })) },
+    { r: 13, ht: 24, cells: ['Mañana', 'Multiedad C 3 Y 4', 'Acosta Echenique', 'Emma', 'Nico', '2314544468', 'Melisa', '2494285033'].map((v, i) => ({ c: i, v, s: 2 })) },
+  ];
+  const instrucciones = genericSheetXml({ cols: [26, 24, 22, 18, 18, 17, 18, 17], rows: instr });
+  return buildGenericXlsxBlob([{ name: 'Alumnos', xml: alumnos }, { name: 'Instrucciones', xml: instrucciones }]);
+}
+
+function descargarModeloExcel() {
+  triggerDownload(buildModeloAlumnosBlob(), 'modelo_alumnos_jardin.xlsx');
+}
+
+
 /* ===================== Vista: Fichas ===================== */
 
 function renderFichas() {
+  const j = cur();
   let listHtml;
   let headerExtra = '';
 
   if (ui.search.trim()) {
     const rawTerm = ui.search.trim();
     const term = normalize(rawTerm);
-    const matches = state.alumnos
+    const matches = j.alumnos
       .filter(a => normalize(a.apellido + ' ' + a.nombre).includes(term)
         || a.fotosGrupales.some(f => String(f).includes(rawTerm))
         || a.fotosIndividuales.some(f => String(f).includes(rawTerm)))
@@ -951,28 +2528,43 @@ function renderFichas() {
       ? renderCardList(matches, true)
       : `<div class="section-hint">No se encontraron alumnos para "${escapeHtml(ui.search)}".</div>`;
   } else {
+    const turnos = turnosList(j);
+    if (!turnos.includes(ui.turno)) ui.turno = turnos[0];
+    const salas = salasPorTurno(j)[ui.turno] || [];
     headerExtra = `
+      <details class="import-box">
+        <summary>Importar alumnos desde Excel / CSV</summary>
+        <div class="import-body">
+          <p class="muted">Cargá un listado con columnas Turno, Sala, Apellido, Nombre (y opcionalmente Padre, Madre y teléfonos). Los alumnos se suman a este jardín; los que ya existen se omiten. Usá el modelo para que salga sin problemas.</p>
+          <div class="export-row">
+            <input type="file" id="importAlumnosInput" accept=".xlsx,.csv,.txt,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">
+            <button class="btn" id="btnModeloExcel">Descargar modelo de Excel</button>
+          </div>
+        </div>
+      </details>
       <div class="turno-toggle">
-        ${TURNOS.map(t => `<button data-turno="${escapeAttr(t)}" class="${ui.turno === t ? 'active' : ''}">${escapeHtml(t)}</button>`).join('')}
+        ${turnos.map(t => `<button data-turno="${escapeAttr(t)}" class="${ui.turno === t ? 'active' : ''}">${escapeHtml(t)}</button>`).join('')}
       </div>
       <div class="sala-chips">
-        ${(SALAS_POR_TURNO[ui.turno] || []).map(s => {
-          const alumnosSala = state.alumnos.filter(a => a.turno === ui.turno && a.sala === s);
+        ${salas.map(s => {
+          const alumnosSala = j.alumnos.filter(a => a.turno === ui.turno && a.sala === s);
           const pedidos = alumnosSala.filter(a => calcTotal(a) > 0).length;
           return `<button class="sala-chip ${ui.sala === s ? 'active' : ''}" data-sala="${escapeAttr(s)}">
             <span>${escapeHtml(s)}</span>
             <span class="n">${alumnosSala.length} alumnos · ${pedidos} pedidos</span>
           </button>`;
         }).join('')}
+        <button class="sala-chip sala-chip-add" id="btnAgregarSala"><span>+ Agregar sala</span><span class="n">turno ${escapeHtml(ui.turno)}</span></button>
       </div>
     `;
-    if (!ui.sala || !(SALAS_POR_TURNO[ui.turno] || []).includes(ui.sala)) {
-      listHtml = `<div class="section-hint">Elegí una sala arriba para ver y cargar los pedidos.</div>`;
+    if (!ui.sala || !salas.includes(ui.sala)) {
+      listHtml = `<div class="section-hint">${salas.length ? 'Elegí una sala arriba para ver y cargar los pedidos.' : 'Este turno todavía no tiene salas. Tocá “+ Agregar sala” o importá un listado desde Excel.'}</div>`;
     } else {
-      const alumnosSala = state.alumnos.filter(a => a.turno === ui.turno && a.sala === ui.sala).sort(sortByName);
+      const alumnosSala = j.alumnos.filter(a => a.turno === ui.turno && a.sala === ui.sala).sort(sortByName);
       listHtml = `
         <div class="list-toolbar">
           <button class="btn btn-primary btn-small" id="btnAgregarAlumno">+ Agregar alumno a esta sala</button>
+          ${alumnosSala.length ? '' : '<button class="btn btn-small" id="btnEliminarSala">Eliminar esta sala (vacía)</button>'}
         </div>
         ${renderCardList(alumnosSala, false)}
       `;
@@ -1120,8 +2712,20 @@ function attachTurnoSalaAndListHandlers() {
   document.querySelectorAll('.turno-toggle button').forEach(btn => {
     btn.addEventListener('click', () => { ui.turno = btn.dataset.turno; ui.sala = null; render(); });
   });
-  document.querySelectorAll('.sala-chip').forEach(btn => {
+  document.querySelectorAll('.sala-chip[data-sala]').forEach(btn => {
     btn.addEventListener('click', () => { ui.sala = btn.dataset.sala; render(); });
+  });
+  const bs = document.getElementById('btnAgregarSala');
+  if (bs) bs.addEventListener('click', agregarSala);
+  const bes = document.getElementById('btnEliminarSala');
+  if (bes) bes.addEventListener('click', onEliminarSalaClick);
+  const bm = document.getElementById('btnModeloExcel');
+  if (bm) bm.addEventListener('click', descargarModeloExcel);
+  const imp = document.getElementById('importAlumnosInput');
+  if (imp) imp.addEventListener('change', async () => {
+    const f = imp.files[0];
+    if (!f) return;
+    try { await importarAlumnosEnJardin(f); } finally { imp.value = ''; }
   });
   attachCardListHandlers();
 }
@@ -1155,7 +2759,7 @@ function onAgregarAlumnoClick(e) {
     { id: uid('al'), turno: ui.turno, sala: ui.sala, apellido: 'Apellido', nombre: 'Nombre' },
     defaultAlumnoFields()
   );
-  state.alumnos.push(nuevo);
+  cur().alumnos.push(nuevo);
   saveState();
   render();
   const cardEl = document.querySelector(`.alumno-card[data-id="${nuevo.id}"]`);
@@ -1170,11 +2774,11 @@ function onAgregarAlumnoClick(e) {
 function onEliminarAlumnoClick(e) {
   const btn = e.target.closest('[data-delete-alumno]');
   if (!btn) return;
-  const alumno = state.alumnos.find(a => a.id === btn.dataset.deleteAlumno);
+  const alumno = cur().alumnos.find(a => a.id === btn.dataset.deleteAlumno);
   if (!alumno) return;
   const ok = confirm(`¿Eliminar a ${alumno.apellido}, ${alumno.nombre} de la lista? No se puede deshacer.`);
   if (!ok) return;
-  state.alumnos = state.alumnos.filter(a => a.id !== alumno.id);
+  cur().alumnos = cur().alumnos.filter(a => a.id !== alumno.id);
   saveState();
   render();
 }
@@ -1183,7 +2787,7 @@ function onQtyClick(e) {
   const btn = e.target.closest('[data-qty-action]');
   if (!btn) return;
   const cardEl = e.target.closest('.alumno-card');
-  const alumno = state.alumnos.find(a => a.id === cardEl.dataset.id);
+  const alumno = cur().alumnos.find(a => a.id === cardEl.dataset.id);
   if (!alumno) return;
   const productId = btn.closest('.qty-stepper').dataset.product;
   const current = Number(alumno.productos[productId]) || 0;
@@ -1203,7 +2807,7 @@ function onFotoClick(e) {
   const removeBtn = e.target.closest('[data-remove-foto]');
   if (!addBtn && !removeBtn) return;
   const cardEl = e.target.closest('.alumno-card');
-  const alumno = state.alumnos.find(a => a.id === cardEl.dataset.id);
+  const alumno = cur().alumnos.find(a => a.id === cardEl.dataset.id);
   if (!alumno) return;
   if (addBtn) addFotoFromCard(cardEl, alumno, addBtn.dataset.addFoto);
   if (removeBtn) removeFoto(cardEl, alumno, removeBtn.dataset.removeFoto, removeBtn.dataset.value);
@@ -1215,7 +2819,7 @@ function onFotoKeydown(e) {
   if (!input) return;
   e.preventDefault();
   const cardEl = e.target.closest('.alumno-card');
-  const alumno = state.alumnos.find(a => a.id === cardEl.dataset.id);
+  const alumno = cur().alumnos.find(a => a.id === cardEl.dataset.id);
   if (!alumno) return;
   addFotoFromCard(cardEl, alumno, input.dataset.fotoInput);
 }
@@ -1264,7 +2868,7 @@ function onFieldChange(e) {
   const cardEl = e.target.closest('.alumno-card');
   if (!cardEl) return;
   const id = cardEl.dataset.id;
-  const alumno = state.alumnos.find(a => a.id === id);
+  const alumno = cur().alumnos.find(a => a.id === id);
   if (!alumno) return;
 
   if (e.target.dataset.field) {
@@ -1320,7 +2924,8 @@ function updateCardComputed(cardEl, alumno) {
 function updateSalaChipCounts() {
   document.querySelectorAll('.sala-chip').forEach(chip => {
     const sala = chip.dataset.sala;
-    const alumnosSala = state.alumnos.filter(a => a.turno === ui.turno && a.sala === sala);
+    if (!sala) return;
+    const alumnosSala = cur().alumnos.filter(a => a.turno === ui.turno && a.sala === sala);
     const pedidos = alumnosSala.filter(a => calcTotal(a) > 0).length;
     const nEl = chip.querySelector('.n');
     if (nEl) nEl.textContent = `${alumnosSala.length} alumnos · ${pedidos} pedidos`;
@@ -1330,21 +2935,21 @@ function updateSalaChipCounts() {
 /* ===================== Vista: Estadísticas ===================== */
 
 function renderStats() {
-  const alumnosConPedido = state.alumnos.filter(a => calcTotal(a) > 0);
+  const alumnosConPedido = cur().alumnos.filter(a => calcTotal(a) > 0);
   const totalVentas = alumnosConPedido.reduce((s, a) => s + calcTotal(a), 0);
-  const totalCobrado = state.alumnos.reduce((s, a) => s + calcCobrado(a), 0);
+  const totalCobrado = cur().alumnos.reduce((s, a) => s + calcCobrado(a), 0);
   const totalPendiente = totalVentas - totalCobrado;
 
   const porProducto = PRODUCTS.map(p => {
-    const pedidos = state.alumnos.filter(a => (Number(a.productos[p.id]) || 0) > 0).length;
-    const cantidad = state.alumnos.reduce((s, a) => s + (Number(a.productos[p.id]) || 0), 0);
+    const pedidos = cur().alumnos.filter(a => (Number(a.productos[p.id]) || 0) > 0).length;
+    const cantidad = cur().alumnos.reduce((s, a) => s + (Number(a.productos[p.id]) || 0), 0);
     return { ...p, pedidos, cantidad, monto: cantidad * p.price };
   });
 
   const salasOrden = [];
-  TURNOS.forEach(t => (SALAS_POR_TURNO[t] || []).forEach(s => salasOrden.push({ turno: t, sala: s })));
+  turnosList().forEach(t => (salasPorTurno()[t] || []).forEach(s => salasOrden.push({ turno: t, sala: s })));
   const porSala = salasOrden.map(({ turno, sala }) => {
-    const alumnosSala = state.alumnos.filter(a => a.turno === turno && a.sala === sala);
+    const alumnosSala = cur().alumnos.filter(a => a.turno === turno && a.sala === sala);
     const conPedido = alumnosSala.filter(a => calcTotal(a) > 0);
     return {
       turno, sala,
@@ -1356,11 +2961,11 @@ function renderStats() {
 
   const periodos = aggregateByPeriod(alumnosConPedido, ui.periodo);
 
-  const totalGastos = state.gastos.reduce((s, g) => s + (Number(g.monto) || 0), 0);
+  const totalGastos = cur().gastos.reduce((s, g) => s + (Number(g.monto) || 0), 0);
   const balance = totalVentas - totalGastos;
   const gastosPorProducto = Object.fromEntries(PRODUCTS.map(p => [p.id, 0]));
   let gastosGenerales = 0;
-  state.gastos.forEach(g => {
+  cur().gastos.forEach(g => {
     if (gastosPorProducto.hasOwnProperty(g.productoId)) gastosPorProducto[g.productoId] += Number(g.monto) || 0;
     else gastosGenerales += Number(g.monto) || 0;
   });
@@ -1376,7 +2981,7 @@ function renderStats() {
       <div class="kpi-card"><div class="label">Monto total vendido</div><div class="value">${money(totalVentas)}</div></div>
       <div class="kpi-card"><div class="label">Cobrado hasta ahora</div><div class="value">${money(totalCobrado)}</div></div>
       <div class="kpi-card"><div class="label">Pendiente de cobro</div><div class="value">${money(totalPendiente)}</div></div>
-      <div class="kpi-card"><div class="label">Pedidos con al menos 1 producto</div><div class="value">${alumnosConPedido.length} <span style="font-size:0.9rem;color:var(--ink-faint)">/ ${state.alumnos.length}</span></div></div>
+      <div class="kpi-card"><div class="label">Pedidos con al menos 1 producto</div><div class="value">${alumnosConPedido.length} <span style="font-size:0.9rem;color:var(--ink-faint)">/ ${cur().alumnos.length}</span></div></div>
     </div>
 
     <div class="stats-section">
@@ -1434,6 +3039,42 @@ function renderStats() {
     </div>
 
     <div class="stats-section">
+      <h2>Planilla de pedidos para imprimir (Excel)</h2>
+      <div class="export-panel">
+        <div class="field-grid" style="margin:0">
+          <div class="field">
+            <label>Qué exportar</label>
+            <select id="planillaScope">
+              <option value="all">Todas las salas (una hoja por sala)</option>
+              ${turnosList().map(t => `<option value="turno:${escapeAttr(t)}">Turno ${escapeHtml(t)} (una hoja por sala)</option>`).join('')}
+              <option value="one">Todo junto en una sola hoja</option>
+              ${turnosList().map(t => `<optgroup label="Una sala — ${escapeAttr(t)}">${(salasPorTurno()[t] || []).map(s => `<option value="sala:${escapeAttr(t)}|${escapeAttr(s)}">${escapeHtml(s)}</option>`).join('')}</optgroup>`).join('')}
+            </select>
+          </div>
+          <div class="field">
+            <label>Alumnos a incluir</label>
+            <select id="planillaFiltro">
+              <option value="todos">Todos</option>
+              <option value="pedido">Solo los que tienen pedido</option>
+              <option value="saldo">Solo con saldo pendiente</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Orientación de la hoja</label>
+            <select id="planillaOrient">
+              <option value="landscape">Horizontal (recomendado)</option>
+              <option value="portrait">Vertical</option>
+            </select>
+          </div>
+        </div>
+        <div class="export-row">
+          <button class="btn btn-primary" id="btnExportPlanilla">Descargar planilla (.xlsx)</button>
+        </div>
+        <div class="muted">Sale lista para imprimir en A4: todas las columnas entran a lo ancho de una hoja, el encabezado se repite en cada página y trae una fila de totales.</div>
+      </div>
+    </div>
+
+    <div class="stats-section">
       <h2>Exportar listados</h2>
       <div class="export-panel">
         <div class="export-row">
@@ -1451,7 +3092,7 @@ function renderStats() {
         <div class="export-row">
           <button class="btn btn-primary" id="btnExportTodo">Exportar listado completo (CSV)</button>
         </div>
-        <div class="muted">Los CSV se abren directamente en Excel. El backup en JSON (botón de arriba) es para pasar todos los datos cargados a otra computadora o celular.</div>
+        <div class="muted">Los CSV se abren directamente en Excel. El backup en JSON (en la pantalla de inicio) es para pasar todos los datos cargados a otra computadora o celular.</div>
       </div>
     </div>
   `;
@@ -1467,6 +3108,13 @@ function attachStatsHandlers() {
     exportPorSala(turno, sala);
   });
   document.getElementById('btnExportTodo').addEventListener('click', exportCompleto);
+  document.getElementById('btnExportPlanilla').addEventListener('click', () => {
+    exportPlanillaExcel(
+      document.getElementById('planillaScope').value,
+      document.getElementById('planillaFiltro').value,
+      document.getElementById('planillaOrient').value
+    );
+  });
   document.querySelectorAll('[data-periodo]').forEach(btn => {
     btn.addEventListener('click', () => { ui.periodo = btn.dataset.periodo; render(); });
   });
@@ -1474,9 +3122,9 @@ function attachStatsHandlers() {
 
 /* ===================== Vista: Gastos ===================== */
 
-function renderGastos() {
-  const gastosOrdenados = [...state.gastos].sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
-  const totalGastos = state.gastos.reduce((s, g) => s + (Number(g.monto) || 0), 0);
+function renderGastosJardin() {
+  const gastosOrdenados = [...cur().gastos].sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+  const totalGastos = cur().gastos.reduce((s, g) => s + (Number(g.monto) || 0), 0);
 
   return `
     <div class="stats-section">
@@ -1488,7 +3136,7 @@ function renderGastos() {
           <div class="field">
             <label>Categoría</label>
             <select id="gastoCategoria">
-              ${state.gastoCategorias.map(c => `<option value="${escapeAttr(c)}">${escapeHtml(c)}</option>`).join('')}
+              ${cur().gastoCategorias.map(c => `<option value="${escapeAttr(c)}">${escapeHtml(c)}</option>`).join('')}
               <option value="__nueva__">+ Nueva categoría…</option>
             </select>
           </div>
@@ -1531,7 +3179,7 @@ function renderGastos() {
   `;
 }
 
-function attachGastosHandlers() {
+function attachGastosJardinHandlers() {
   const catSelect = document.getElementById('gastoCategoria');
   catSelect.addEventListener('change', () => {
     document.getElementById('gastoNuevaCategoriaField').hidden = catSelect.value !== '__nueva__';
@@ -1543,12 +3191,12 @@ function attachGastosHandlers() {
       const nueva = document.getElementById('gastoNuevaCategoria').value.trim();
       if (!nueva) { alert('Escribí el nombre de la nueva categoría.'); return; }
       categoria = nueva;
-      if (!state.gastoCategorias.includes(nueva)) state.gastoCategorias.push(nueva);
+      if (!cur().gastoCategorias.includes(nueva)) cur().gastoCategorias.push(nueva);
     }
     const descripcion = document.getElementById('gastoDescripcion').value.trim();
     const monto = Number(document.getElementById('gastoMonto').value) || 0;
     if (!descripcion || monto <= 0) { alert('Completá una descripción y un monto mayor a 0.'); return; }
-    state.gastos.push({
+    cur().gastos.push({
       id: uid('gasto'),
       fecha: document.getElementById('gastoFecha').value || todayStr(),
       descripcion,
@@ -1563,11 +3211,251 @@ function attachGastosHandlers() {
   document.querySelectorAll('[data-delete-gasto]').forEach(btn => {
     btn.addEventListener('click', () => {
       if (!confirm('¿Eliminar este gasto?')) return;
-      state.gastos = state.gastos.filter(g => g.id !== btn.dataset.deleteGasto);
+      cur().gastos = cur().gastos.filter(g => g.id !== btn.dataset.deleteGasto);
       saveState();
       render();
     });
   });
+}
+
+/* ===================== Exportación Excel (planilla para imprimir) ===================== */
+
+const PLANILLA_COLS_BASE = [
+  { h: 'Apellido', w: 17 }, { h: 'Nombre', w: 11 }, { h: 'Padre', w: 10 }, { h: 'Teléfono', w: 12 },
+  { h: 'Madre', w: 10 }, { h: 'Teléfono', w: 12 },
+  { h: 'Carpeta', w: 8 }, { h: 'Imán', w: 6 }, { h: 'Individual', w: 9.5 }, { h: 'Ind. c/ Seño', w: 7 }, { h: 'Digital', w: 7 },
+  { h: 'Números de fotos', w: 17 }, { h: 'Estado de pago', w: 13 }, { h: 'Total $', w: 9.5 }, { h: 'Importe pagado', w: 9.5 }, { h: 'Saldo', w: 9.5 },
+];
+const PLANILLA_COLS_TURNO_SALA = [{ h: 'Turno', w: 10 }, { h: 'Sala', w: 20 }];
+const PLANILLA_PRODUCTS = ['carpeta', 'iman', 'individual', 'individual_sena', 'digital'];
+
+// porSala = true: una hoja por sala, con título arriba (turno · sala) y sin columnas Turno/Sala.
+// porSala = false: todo en una sola hoja, sin título y con columnas Turno/Sala.
+function planillaLayout(porSala) {
+  const defs = porSala ? PLANILLA_COLS_BASE : PLANILLA_COLS_TURNO_SALA.concat(PLANILLA_COLS_BASE);
+  const headerRow = porSala ? 2 : 1;
+  return { defs, off: porSala ? 0 : 2, headerRow, firstData: headerRow + 1, lastCol: xlsCol(defs.length - 1) };
+}
+
+function xmlEsc(s) {
+  return String(s == null ? '' : s)
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function xlsCol(i) { return String.fromCharCode(65 + i); }
+
+function xlsStr(ref, text, style) {
+  if (text === '' || text == null) return `<c r="${ref}" s="${style}"/>`;
+  return `<c r="${ref}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xmlEsc(text)}</t></is></c>`;
+}
+
+function xlsNum(ref, n, style) {
+  if (!n) return `<c r="${ref}" s="${style}"/>`;
+  return `<c r="${ref}" s="${style}"><v>${n}</v></c>`;
+}
+
+function planillaFotos(a) {
+  return [...(a.fotosGrupales || []), ...(a.fotosIndividuales || [])].join(' - ');
+}
+
+function planillaSheetXml(alumnos, orientation, sheetTitle, porSala) {
+  const { defs, off, headerRow, firstData, lastCol } = planillaLayout(porSala);
+  const c = i => xlsCol(off + i);
+  const rows = [];
+
+  if (porSala) rows.push(`<row r="1" ht="32" customHeight="1">${xlsStr('A1', sheetTitle, 13)}</row>`);
+  rows.push(`<row r="${headerRow}" ht="36" customHeight="1">${defs.map((d, i) => xlsStr(xlsCol(i) + headerRow, d.h, 1)).join('')}</row>`);
+
+  const sums = PLANILLA_PRODUCTS.map(() => 0);
+  let sumTotal = 0, sumPagado = 0, sumSaldo = 0;
+
+  alumnos.forEach((a, idx) => {
+    const r = firstData + idx;
+    const total = calcTotal(a), pagado = calcCobrado(a), saldo = calcSaldo(a);
+    const st = statusInfo(a);
+    const estadoStyle = st.cls === 'pill-good' ? 6 : st.cls === 'pill-warn' ? 7 : st.cls === 'pill-bad' ? 8 : 3;
+    const cells = [];
+    if (!porSala) cells.push(xlsStr('A' + r, a.turno, 2), xlsStr('B' + r, a.sala, 2));
+    cells.push(
+      xlsStr(c(0) + r, a.apellido, 2), xlsStr(c(1) + r, a.nombre, 2),
+      xlsStr(c(2) + r, a.padre, 2), xlsStr(c(3) + r, a.telefonoPadre, 2),
+      xlsStr(c(4) + r, a.madre, 2), xlsStr(c(5) + r, a.telefonoMadre, 2)
+    );
+    PLANILLA_PRODUCTS.forEach((pid, i) => {
+      const q = Number(a.productos[pid]) || 0;
+      sums[i] += q;
+      cells.push(xlsNum(c(6 + i) + r, q, 4));
+    });
+    const fotos = planillaFotos(a);
+    cells.push(xlsStr(c(11) + r, fotos, 12));
+    cells.push(xlsStr(c(12) + r, total > 0 ? st.label : '', total > 0 ? estadoStyle : 3));
+    cells.push(xlsNum(c(13) + r, total, 5));
+    cells.push(xlsNum(c(14) + r, pagado, 5));
+    cells.push(xlsNum(c(15) + r, saldo, 5));
+    sumTotal += total; sumPagado += pagado; sumSaldo += saldo;
+    const lines = Math.max(1, Math.ceil(fotos.length / 15));
+    const ht = Math.max(24, lines * 16 + 6);
+    rows.push(`<row r="${r}" ht="${ht}" customHeight="1">${cells.join('')}</row>`);
+  });
+
+  const lastData = firstData + alumnos.length - 1;
+  const tr = lastData + 1;
+  const tcells = [];
+  for (let i = 0; i < off + 6; i++) tcells.push(xlsStr(xlsCol(i) + tr, i === 0 ? 'TOTAL' : '', 9));
+  PLANILLA_PRODUCTS.forEach((pid, i) => {
+    const col = c(6 + i);
+    tcells.push(`<c r="${col}${tr}" s="10"><f>SUM(${col}${firstData}:${col}${lastData})</f><v>${sums[i]}</v></c>`);
+  });
+  tcells.push(xlsStr(c(11) + tr, '', 9));
+  tcells.push(xlsStr(c(12) + tr, '', 9));
+  [[13, sumTotal], [14, sumPagado], [15, sumSaldo]].forEach(([i, v]) => {
+    const col = c(i);
+    tcells.push(`<c r="${col}${tr}" s="11"><f>SUM(${col}${firstData}:${col}${lastData})</f><v>${v}</v></c>`);
+  });
+  rows.push(`<row r="${tr}" ht="26" customHeight="1">${tcells.join('')}</row>`);
+
+  const cols = defs.map((d, i) => `<col min="${i + 1}" max="${i + 1}" width="${d.w}" customWidth="1"/>`).join('');
+  const filter = alumnos.length ? `<autoFilter ref="A${headerRow}:${lastCol}${lastData}"/>` : '';
+  const merge = porSala ? `<mergeCells count="1"><mergeCell ref="A1:${lastCol}1"/></mergeCells>` : '';
+  const ampEsc = s => String(s).replace(/&/g, '&&');
+  const header = '&L&"-,Bold"' + ampEsc('Virginia Migueltorena Fotografía · ' + cur().nombre) + '&R' + ampEsc(sheetTitle);
+  const footer = '&LImpreso el &D&RPágina &P de &N';
+
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><dimension ref="A1:${lastCol}${tr}"/><sheetViews><sheetView workbookViewId="0"><pane ySplit="${headerRow}" topLeftCell="A${headerRow + 1}" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="24" customHeight="1"/><cols>${cols}</cols><sheetData>${rows.join('')}</sheetData>${filter}${merge}<printOptions horizontalCentered="1"/><pageMargins left="0.4" right="0.4" top="0.7" bottom="0.6" header="0.3" footer="0.3"/><pageSetup paperSize="9" orientation="${orientation}" fitToWidth="1" fitToHeight="0"/><headerFooter><oddHeader>${xmlEsc(header)}</oddHeader><oddFooter>${xmlEsc(footer)}</oddFooter></headerFooter></worksheet>`;
+}
+
+const PLANILLA_STYLES_XML = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="3"><font><sz val="12"/><name val="Calibri"/><family val="2"/></font><font><b/><sz val="12"/><name val="Calibri"/><family val="2"/></font><font><b/><sz val="18"/><name val="Calibri"/><family val="2"/></font></fonts><fills count="7"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFD5E5CC"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE4EFDD"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF5EBD3"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF4E4DC"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF6F3E6"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFA6A6A6"/></left><right style="thin"><color rgb="FFA6A6A6"/></right><top style="thin"><color rgb="FFA6A6A6"/></top><bottom style="thin"><color rgb="FFA6A6A6"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="16"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" shrinkToFit="1"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="3" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="5" borderId="1" xfId="0" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="1" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf><xf numFmtId="0" fontId="1" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="3" fontId="1" fillId="6" borderId="1" xfId="0" applyNumberFormat="1" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf><xf numFmtId="49" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
+
+const XLSX_CRC_TABLE = (() => {
+  const t = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) {
+    let c = n;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+    t[n] = c >>> 0;
+  }
+  return t;
+})();
+
+function xlsCrc32(bytes) {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < bytes.length; i++) c = XLSX_CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+
+// Arma un .zip sin compresión (suficiente para un .xlsx liviano) sin depender de ninguna librería externa.
+function buildZipBlob(files, mime) {
+  const enc = new TextEncoder();
+  const chunks = [], central = [];
+  let offset = 0;
+  const now = new Date();
+  const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+  const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+  files.forEach(f => {
+    const nameB = enc.encode(f.name);
+    const data = enc.encode(f.data);
+    const crc = xlsCrc32(data);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true);
+    lh.setUint16(8, 0, true); lh.setUint16(10, dosTime, true); lh.setUint16(12, dosDate, true);
+    lh.setUint32(14, crc, true); lh.setUint32(18, data.length, true); lh.setUint32(22, data.length, true);
+    lh.setUint16(26, nameB.length, true); lh.setUint16(28, 0, true);
+    chunks.push(new Uint8Array(lh.buffer), nameB, data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true);
+    ch.setUint16(10, 0, true); ch.setUint16(12, dosTime, true); ch.setUint16(14, dosDate, true);
+    ch.setUint32(16, crc, true); ch.setUint32(20, data.length, true); ch.setUint32(24, data.length, true);
+    ch.setUint16(28, nameB.length, true); ch.setUint16(30, 0, true); ch.setUint16(32, 0, true);
+    ch.setUint16(34, 0, true); ch.setUint16(36, 0, true); ch.setUint32(38, 0, true); ch.setUint32(42, offset, true);
+    central.push(new Uint8Array(ch.buffer), nameB);
+    offset += 30 + nameB.length + data.length;
+  });
+  const centralSize = central.reduce((s, c) => s + c.length, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(4, 0, true); end.setUint16(6, 0, true);
+  end.setUint16(8, files.length, true); end.setUint16(10, files.length, true);
+  end.setUint32(12, centralSize, true); end.setUint32(16, offset, true); end.setUint16(20, 0, true);
+  return new Blob([...chunks, ...central, new Uint8Array(end.buffer)], { type: mime });
+}
+
+function safeSheetName(name, used) {
+  let base = String(name).replace(/[\[\]:*?\/\\']/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 31) || 'Hoja';
+  let out = base, n = 2;
+  while (used.has(out.toLowerCase())) {
+    const suffix = ' ' + n++;
+    out = base.slice(0, 31 - suffix.length) + suffix;
+  }
+  used.add(out.toLowerCase());
+  return out;
+}
+
+function buildXlsxBlob(sheets, orientation) {
+  const used = new Set();
+  const named = sheets.map(sh => ({ name: safeSheetName(sh.name, used), alumnos: sh.alumnos, title: sh.title, porSala: !!sh.porSala }));
+  const files = [];
+
+  files.push({ name: '[Content_Types].xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${named.map((_, i) => `<Override PartName="/xl/worksheets/sheet${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')}</Types>` });
+
+  files.push({ name: '_rels/.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>` });
+
+  const defined = [];
+  named.forEach((sh, i) => {
+    const q = `'${sh.name}'`;
+    const lay = planillaLayout(sh.porSala);
+    defined.push(`<definedName name="_xlnm.Print_Titles" localSheetId="${i}">${xmlEsc(q)}!$${lay.headerRow}:$${lay.headerRow}</definedName>`);
+    if (sh.alumnos.length) defined.push(`<definedName name="_xlnm._FilterDatabase" localSheetId="${i}" hidden="1">${xmlEsc(q)}!$A$${lay.headerRow}:$${lay.lastCol}$${lay.headerRow + sh.alumnos.length}</definedName>`);
+  });
+
+  files.push({ name: 'xl/workbook.xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="0"/></bookViews><sheets>${named.map((sh, i) => `<sheet name="${xmlEsc(sh.name)}" sheetId="${i + 1}" r:id="rId${i + 1}"/>`).join('')}</sheets><definedNames>${defined.join('')}</definedNames></workbook>` });
+
+  files.push({ name: 'xl/_rels/workbook.xml.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${named.map((_, i) => `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i + 1}.xml"/>`).join('')}<Relationship Id="rId${named.length + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>` });
+
+  files.push({ name: 'xl/styles.xml', data: PLANILLA_STYLES_XML });
+  named.forEach((sh, i) => files.push({ name: `xl/worksheets/sheet${i + 1}.xml`, data: planillaSheetXml(sh.alumnos, orientation, sh.title, sh.porSala) }));
+
+  return buildZipBlob(files, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+}
+
+function planillaSheetsFor(scope, filtro) {
+  const salasOrden = [];
+  turnosList().forEach(t => (salasPorTurno()[t] || []).forEach(s => salasOrden.push({ turno: t, sala: s })));
+
+  const pasaFiltro = a => filtro === 'pedido' ? calcTotal(a) > 0 : filtro === 'saldo' ? calcSaldo(a) > 0 : true;
+  const deSala = (turno, sala) => cur().alumnos.filter(a => a.turno === turno && a.sala === sala && pasaFiltro(a)).sort(sortByName);
+
+  if (scope === 'one') {
+    const alumnos = [];
+    salasOrden.forEach(({ turno, sala }) => alumnos.push(...deSala(turno, sala)));
+    return [{ name: 'Pedidos', title: 'Todas las salas', alumnos, porSala: false }];
+  }
+  let lista = salasOrden;
+  if (scope.startsWith('turno:')) {
+    const t = scope.slice(6);
+    lista = salasOrden.filter(x => x.turno === t);
+  } else if (scope.startsWith('sala:')) {
+    const [t, s] = scope.slice(5).split('|');
+    lista = salasOrden.filter(x => x.turno === t && x.sala === s);
+  }
+  return lista
+    .map(({ turno, sala }) => ({ name: `${turno} - ${sala}`, title: `${turno} · ${sala}`, alumnos: deSala(turno, sala), porSala: true }))
+    .filter(sh => sh.alumnos.length > 0);
+}
+
+function exportPlanillaExcel(scope, filtro, orientation) {
+  const sheets = planillaSheetsFor(scope, filtro);
+  if (!sheets.length || sheets.every(sh => !sh.alumnos.length)) {
+    alert('No hay alumnos para exportar con esa selección.');
+    return;
+  }
+  const blob = buildXlsxBlob(sheets, orientation === 'portrait' ? 'portrait' : 'landscape');
+  const label = scope === 'all' ? 'todas_las_salas' : scope === 'one' ? 'todo' : slug(scope.replace(/^(turno|sala):/, ''));
+  triggerDownload(blob, `planilla_${slug(cur().nombre)}_${label}_${todayStr()}.xlsx`);
 }
 
 /* ===================== Exportación CSV ===================== */
@@ -1613,14 +3501,14 @@ function medioPagoLabel(a) {
 
 function exportPorProducto(productId) {
   const prod = PRODUCTS.find(p => p.id === productId);
-  const alumnos = state.alumnos.filter(a => (Number(a.productos[productId]) || 0) > 0).sort(sortByName);
+  const alumnos = cur().alumnos.filter(a => (Number(a.productos[productId]) || 0) > 0).sort(sortByName);
   const headers = ['Turno', 'Sala', 'Apellido', 'Nombre', 'Cantidad', 'Padre', 'Teléfono padre', 'Madre', 'Teléfono madre', 'Estado de pago', 'Medio de pago'];
   const rows = alumnos.map(a => [a.turno, a.sala, a.apellido, a.nombre, a.productos[productId], a.padre, a.telefonoPadre, a.madre, a.telefonoMadre, estadoPagoLabel(a), medioPagoLabel(a)]);
-  downloadCSV(`pedidos_${slug(prod.label)}.csv`, headers, rows);
+  downloadCSV(`pedidos_${slug(cur().nombre)}_${slug(prod.label)}.csv`, headers, rows);
 }
 
 function exportPorSala(turno, sala) {
-  const alumnos = state.alumnos.filter(a => a.turno === turno && a.sala === sala).sort(sortByName);
+  const alumnos = cur().alumnos.filter(a => a.turno === turno && a.sala === sala).sort(sortByName);
   const headers = ['Apellido', 'Nombre', 'Padre', 'Teléfono padre', 'Madre', 'Teléfono madre', 'Productos pedidos', 'Fotos grupales', 'Fotos individuales', 'Fecha de pedido', 'Estado de pago', 'Monto abonado', 'Medio de pago', 'Total', 'Saldo pendiente', 'Notas'];
   const rows = alumnos.map(a => [
     a.apellido, a.nombre, a.padre, a.telefonoPadre, a.madre, a.telefonoMadre,
@@ -1629,11 +3517,11 @@ function exportPorSala(turno, sala) {
     estadoPagoLabel(a), money(calcCobrado(a)), medioPagoLabel(a),
     money(calcTotal(a)), money(calcSaldo(a)), a.notas,
   ]);
-  downloadCSV(`listado_${slug(turno)}_${slug(sala)}.csv`, headers, rows);
+  downloadCSV(`listado_${slug(cur().nombre)}_${slug(turno)}_${slug(sala)}.csv`, headers, rows);
 }
 
 function exportCompleto() {
-  const alumnos = [...state.alumnos].sort((a, b) => {
+  const alumnos = [...cur().alumnos].sort((a, b) => {
     if (a.turno !== b.turno) return a.turno.localeCompare(b.turno, 'es');
     if (a.sala !== b.sala) return a.sala.localeCompare(b.sala, 'es');
     return sortByName(a, b);
@@ -1645,7 +3533,7 @@ function exportCompleto() {
     estadoPagoLabel(a), money(calcCobrado(a)), medioPagoLabel(a),
     money(calcTotal(a)), money(calcSaldo(a)),
   ]);
-  downloadCSV('listado_completo.csv', headers, rows);
+  downloadCSV(`listado_${slug(cur().nombre)}_completo.csv`, headers, rows);
 }
 
 function slug(s) {
@@ -1655,10 +3543,12 @@ function slug(s) {
 /* ===================== Backup JSON ===================== */
 
 function exportBackup() {
+  state.ultimoBackup = new Date().toISOString();
+  saveState();
   const json = JSON.stringify(state, null, 2);
   const blob = new Blob([json], { type: 'application/json' });
-  const today = new Date().toISOString().slice(0, 10);
-  triggerDownload(blob, `backup_fotos_jardin_${today}.json`);
+  triggerDownload(blob, `backup_virginia_fotografia_${todayStr()}.json`);
+  if (ui.screen === 'home') render();
 }
 
 function handleImportFile(e) {
@@ -1667,11 +3557,13 @@ function handleImportFile(e) {
   const reader = new FileReader();
   reader.onload = () => {
     try {
-      const parsed = JSON.parse(reader.result);
-      if (!parsed || !Array.isArray(parsed.alumnos)) throw new Error('El archivo no tiene el formato esperado.');
-      const ok = confirm(`Se va a reemplazar toda la información cargada por la del archivo "${file.name}" (${parsed.alumnos.length} alumnos). ¿Continuar?`);
+      const nuevo = migrateState(JSON.parse(reader.result));
+      const nAl = nuevo.jardines.reduce((s, j) => s + j.alumnos.length, 0);
+      const ok = confirm(`Se va a reemplazar toda la información cargada por la del archivo "${file.name}": ${nuevo.jardines.length} jardines, ${nAl} alumnos, ${nuevo.sesiones.length} sesiones y ${nuevo.gastosPersonales.length} gastos personales. ¿Continuar?`);
       if (!ok) return;
-      state = parsed;
+      state = nuevo;
+      ui.screen = 'home'; ui.jardinId = null; ui.view = 'fichas'; ui.turno = 'Mañana'; ui.sala = null; ui.search = '';
+      ui.gpEditId = null; ui.sesionAbierta = null; ui.nuevoJardin = false;
       saveState();
       render();
       alert('Backup importado correctamente.');
